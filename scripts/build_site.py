@@ -11,6 +11,7 @@ import json
 import logging
 import os
 import re
+import time
 from pathlib import Path
 
 import markdown
@@ -79,7 +80,7 @@ def load_cache():
 
 
 class Translator:
-    def __init__(self, cache=None, limit=100):
+    def __init__(self, cache=None, limit=40):
         self.cache = cache if cache is not None else load_cache()
         self.limit = limit
         self.calls = 0
@@ -87,6 +88,7 @@ class Translator:
         self.google = None
         self.backup = None
         self.untranslated = 0
+        self.deadline = time.monotonic() + 55
 
     def translate(self, text):
         if not JAPANESE.search(text):
@@ -98,7 +100,7 @@ class Translator:
             return text.replace(clean, DIRECT[clean])
         if clean in self.cache:
             return text.replace(clean, self.cache[clean])
-        if self.calls >= self.limit or self.failures >= 4:
+        if self.calls >= self.limit or self.failures >= 4 or time.monotonic() > self.deadline:
             self.untranslated += 1
             return text
         self.calls += 1
@@ -328,7 +330,7 @@ def main():
     DOCS.mkdir(parents=True, exist_ok=True)
     (DOCS / 'reports').mkdir(parents=True, exist_ok=True)
     reports = sorted((ROOT / 'reports').glob('????-??-??.md'), reverse=True)
-    translator = Translator(limit=int(os.getenv('TRANSLATION_REQUEST_LIMIT', '100')))
+    translator = Translator(limit=int(os.getenv('TRANSLATION_REQUEST_LIMIT', '40')))
     for path in reports:
         source = path.read_text(encoding='utf-8')
         page = render_report(source, path.stem, translator)
