@@ -362,28 +362,67 @@ footer{margin-top:50px;border-top:1px solid var(--line);padding-top:20px;font-si
 '''
 
 def build_html(markdown_text, title):
-    content = markdown.markdown(markdown_text, extensions=['tables','fenced_code'])
-    content = re.sub(r'(<h3>[\s\S]*?)(?=<h[23]>|<hr|$)', r'<article class="stock-card">\1</article>', content)
-    return ('<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
-            '<meta name="theme-color" content="#090917"><title>'+html.escape(title)+'</title><style>'+CSS+'</style></head><body>'
-            '<header><div class="top"><a class="brand" href="../index.html">MARKET <b>DAILY</b></a><nav><a href="../index.html">日報一覧</a></nav></div></header>'
-            '<main class="report"><div class="kicker">MARKET INTELLIGENCE / DAILY BRIEF</div>'+content+
-            '<footer>データは参考情報です。株式投資の最終判断はご自身で行ってください。</footer></main></body></html>')
+    content = markdown.markdown(markdown_text, extensions=['tables', 'fenced_code'])
+    return (
+        '<!doctype html><html lang="ja"><head><meta charset="utf-8">'
+        '<meta name="viewport" content="width=device-width,initial-scale=1">'
+        '<meta name="theme-color" content="#0a0919">'
+        '<meta name="description" content="日本株と米国株の毎日のマーケットレポート">'
+        '<title>' + html.escape(title) + '</title>'
+        '<link rel="stylesheet" href="../theme.css"></head><body>'
+        '<header class="topbar"><div class="topbar-inner">'
+        '<a class="brand" href="../index.html">MARKET <span>BRIEF.</span></a>'
+        '<nav><a href="../index.html">最新・アーカイブ</a></nav>'
+        '</div></header>'
+        '<main class="site-wrap"><article class="report-content">'
+        '<div class="kicker">DAILY MARKET INTELLIGENCE · JAPAN / US</div>'
+        + content +
+        '</article><footer class="site-footer">'
+        '株価・ニュースの取得日時とデータの注意事項をご確認ください。投資助言ではありません。'
+        '</footer></main></body></html>'
+    )
 
 
 def make_index():
-    reports = sorted((ROOT/'reports').glob('????-??-??.md'), reverse=True)
-    cards = ''.join(f'<a class="glass" href="reports/{p.stem}.html"><span>DAILY REPORT / {p.stem}</span><strong>{p.stem} の株式日報 ↗</strong><small>日本株・米国株 / 市場分析と安値圏</small></a>' for p in reports)
-    if not cards:
-        cards = '<div class="glass">日報の初回生成を待っています。</div>'
-    return ('<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
-            '<meta name="theme-color" content="#090917"><title>MARKET DAILY | 株式日報</title><style>'+CSS+'</style></head><body>'
-            '<header><div class="top"><a class="brand" href="index.html">MARKET <b>DAILY</b></a><nav><a href="#archive">ARCHIVE</a></nav></div></header>'
-            '<main><section class="hero"><div class="eyebrow">JAPAN & US / DAILY MARKET INTELLIGENCE</div>'
-            '<h1>MARKET<br>DAILY.</h1><p>日本株と米国株の値動き、注目銘柄、過去5年の安値圏をひとつのレポートに。毎朝7:00 JST頃に更新。</p>'
-            '<p style="font-size:.8rem">LATEST EDITION / '+(reports[0].stem if reports else 'COMING SOON')+'</p></section>'
-            '<section id="archive"><div class="kicker" style="margin-bottom:18px">ISSUE ARCHIVE / 日付別レポート</div><div class="archive-grid">'+cards+'</div></section>'
-            '<footer>Yahoo Financeの非公式データを使用。遅延や欠損があり得ます。投資助言ではありません。</footer></main></body></html>')
+    reports = sorted((ROOT / 'reports').glob('????-??-??.md'), reverse=True)
+    latest = reports[0].stem if reports else None
+    hero = (
+        '<section class="hero"><div class="eyebrow">DAILY MARKET INTELLIGENCE</div>'
+        '<h1>Market <span class="gradient-text">Brief.</span></h1>'
+        '<p>日本株・米国株の値動き、5年安値圏、注目ニュースをひとつに。'
+        '毎朝7時頃（日本時間）に更新するマーケットダイジェスト。</p></section>'
+    )
+    feature = (
+        '<section class="feature-grid">'
+        '<a class="feature-card" href="reports/' + latest + '.html">'
+        '<div class="feature-icon">↗</div><div class="eyebrow">LATEST REPORT</div>'
+        '<h2>最新の株式日報</h2><p>' + latest + ' の市場レポートを読む</p>'
+        '<span class="card-arrow">レポートを開く ↗</span></a>'
+        '<a class="feature-card" href="#archive">'
+        '<div class="feature-icon">◷</div><div class="eyebrow">HISTORY</div>'
+        '<h2>過去のレポート</h2><p>日付別に保存された過去の相場を振り返る</p>'
+        '<span class="card-arrow">アーカイブを見る ↓</span></a></section>'
+    ) if latest else '<section class="glass" style="padding:28px">初回レポートを生成しています。</section>'
+    archive = ''.join(
+        '<li><a href="reports/' + p.stem + '.html"><span>' + p.stem +
+        ' の株式日報</span><span>JP / US</span></a></li>' for p in reports
+    )
+    return (
+        '<!doctype html><html lang="ja"><head><meta charset="utf-8">'
+        '<meta name="viewport" content="width=device-width,initial-scale=1">'
+        '<meta name="theme-color" content="#0a0919">'
+        '<title>Market Brief｜日本株・米国株の日報</title>'
+        '<link rel="stylesheet" href="theme.css"></head><body>'
+        '<header class="topbar"><div class="topbar-inner">'
+        '<a class="brand" href="index.html">MARKET <span>BRIEF.</span></a>'
+        '<nav><a href="#archive">ARCHIVE</a></nav></div></header>'
+        '<main class="site-wrap">' + hero + feature +
+        '<section class="archive" id="archive"><h2>ARCHIVE / 過去の株式日報</h2>'
+        '<ul>' + archive + '</ul></section>'
+        '<footer class="site-footer">データの遅延・欠損があり得ます。投資助言ではありません。'
+        'GitHub Actionsの起動時刻は前後する場合があります。</footer>'
+        '</main></body></html>'
+    )
 
 
 def main():
