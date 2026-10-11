@@ -998,3 +998,679 @@
     "environment": "クラウドセキュリティ需要",
     "market": "US"
   },
+  {
+    "ticker": "CRWD",
+    "name": "CrowdStrike",
+    "business": "サイバーセキュリティ",
+    "brands": "Falcon",
+    "risks": "競争、障害対応",
+    "environment": "エンドポイント防御需要",
+    "market": "US"
+  },
+  {
+    "ticker": "FTNT",
+    "name": "Fortinet",
+    "business": "サイバーセキュリティ",
+    "brands": "FortiGate、Fortinet Security Fabric",
+    "risks": "競争、IT投資",
+    "environment": "ネットワーク防御需要",
+    "market": "US"
+  },
+  {
+    "ticker": "ZS",
+    "name": "Zscaler",
+    "business": "クラウドセキュリティ",
+    "brands": "ZIA、ZPA",
+    "risks": "競争、成長鈍化",
+    "environment": "ゼロトラスト導入",
+    "market": "US"
+  },
+  {
+    "ticker": "NET",
+    "name": "Cloudflare",
+    "business": "ネットワーク・セキュリティ",
+    "brands": "Workers、R2、WAF",
+    "risks": "競争、利益率",
+    "environment": "エッジ計算とセキュリティ",
+    "market": "US"
+  },
+  {
+    "ticker": "SHOP",
+    "name": "Shopify",
+    "business": "ECプラットフォーム",
+    "brands": "Shopify、Shop Pay",
+    "risks": "消費、競争",
+    "environment": "中小企業のEC需要",
+    "market": "US"
+  },
+  {
+    "ticker": "PYPL",
+    "name": "PayPal",
+    "business": "オンライン決済",
+    "brands": "PayPal、Venmo、Braintree",
+    "risks": "競争、手数料",
+    "environment": "デジタル決済需要",
+    "market": "US"
+  },
+  {
+    "ticker": "V",
+    "name": "Visa",
+    "business": "決済ネットワーク",
+    "brands": "Visaカード、Visa Direct",
+    "risks": "規制、手数料",
+    "environment": "キャッシュレス決済",
+    "market": "US"
+  },
+  {
+    "ticker": "MA",
+    "name": "Mastercard",
+    "business": "決済ネットワーク",
+    "brands": "Mastercard、Mastercard Send",
+    "risks": "規制、手数料",
+    "environment": "電子決済と海外旅行",
+    "market": "US"
+  },
+  {
+    "ticker": "AXP",
+    "name": "American Express",
+    "business": "カード・金融",
+    "brands": "American Express、Membership Rewards",
+    "risks": "信用費用、消費",
+    "environment": "高所得層のカード決済",
+    "market": "US"
+  },
+  {
+    "ticker": "JPM",
+    "name": "JPMorgan Chase",
+    "business": "銀行・金融",
+    "brands": "Chase、J.P. Morgan",
+    "risks": "信用費用、金利",
+    "environment": "融資と投資銀行業務",
+    "market": "US"
+  },
+  {
+    "ticker": "BAC",
+    "name": "Bank of America",
+    "business": "銀行・金融",
+    "brands": "Bank of America、Merrill",
+    "risks": "信用費用、金利",
+    "environment": "金利と融資需要",
+    "market": "US"
+  },
+  {
+    "ticker": "WFC",
+    "name": "Wells Fargo",
+    "business": "銀行・金融",
+    "brands": "Wells Fargo、住宅ローン",
+    "risks": "規制、信用費用",
+    "environment": "融資と手数料収益",
+    "market": "US"
+  },
+  {
+    "ticker": "GS",
+    "name": "Goldman Sachs",
+    "business": "投資銀行",
+    "brands": "Goldman Sachs、資産運用",
+    "risks": "市場変動、規制",
+    "environment": "M&Aと資本市場",
+    "market": "US"
+  },
+  {
+    "ticker": "MS",
+    "name": "Morgan Stanley",
+    "business": "証券・資産運用",
+    "brands": "Morgan Stanley、E*TRADE",
+    "risks": "市場変動、規制",
+    "environment": "資産運用と投資銀行",
+    "market": "US"
+  },
+  {
+    "ticker": "BLK",
+    "name": "BlackRock",
+    "business": "資産運用",
+    "brands": "iShares、Aladdin",
+    "risks": "市場変動、手数料",
+    "environment": "ETFと運用資産",
+    "market": "US"
+  },
+  {
+    "ticker": "UNH",
+    "name": "UnitedHealth Group",
+    "business": "医療保険・医療サービス",
+    "brands": "UnitedHealthcare、Optum",
+    "risks": "医療費、規制",
+    "environment": "医療保険と医療サービス",
+    "market": "US"
+  },
+  {
+    "ticker": "HUM",
+    "name": "Humana",
+    "business": "医療保険",
+    "brands": "Medicare Advantage、CenterWell",
+    "risks": "医療費、制度変更",
+    "environment": "高齢者向け医療保険",
+    "market": "US"
+  },
+  {
+    "ticker": "PFE",
+    "name": "Pfizer",
+    "business": "製薬",
+    "brands": "Prevnar、Eliquis、Comirnaty",
+    "risks": "特許切れ、研究開発",
+    "environment": "新薬と抗がん剤需要",
+    "market": "US"
+  },
+  {
+    "ticker": "MRK",
+    "name": "Merck & Co.",
+    "business": "製薬",
+    "brands": "Keytruda、Gardasil",
+    "risks": "特許切れ、研究開発",
+    "environment": "抗がん剤とワクチン",
+    "market": "US"
+  },
+  {
+    "ticker": "LLY",
+    "name": "Eli Lilly",
+    "business": "製薬",
+    "brands": "Mounjaro、Zepbound",
+    "risks": "薬価、競争",
+    "environment": "肥満症と糖尿病治療薬",
+    "market": "US"
+  },
+  {
+    "ticker": "NVO",
+    "name": "Novo Nordisk",
+    "business": "製薬",
+    "brands": "Ozempic、Wegovy、Rybelsus",
+    "risks": "競争、薬価",
+    "environment": "肥満症治療薬市場",
+    "market": "US"
+  },
+  {
+    "ticker": "ABBV",
+    "name": "AbbVie",
+    "business": "製薬",
+    "brands": "Skyrizi、Rinvoq",
+    "risks": "特許切れ、研究開発",
+    "environment": "免疫疾患治療薬",
+    "market": "US"
+  },
+  {
+    "ticker": "AMGN",
+    "name": "Amgen",
+    "business": "バイオ医薬品",
+    "brands": "Repatha、Prolia",
+    "risks": "特許、研究開発",
+    "environment": "バイオ医薬品需要",
+    "market": "US"
+  },
+  {
+    "ticker": "GILD",
+    "name": "Gilead Sciences",
+    "business": "製薬",
+    "brands": "Biktarvy、Trodelvy",
+    "risks": "特許、研究開発",
+    "environment": "HIVと抗がん剤",
+    "market": "US"
+  },
+  {
+    "ticker": "REGN",
+    "name": "Regeneron Pharmaceuticals",
+    "business": "バイオ医薬品",
+    "brands": "Eylea、Dupixent",
+    "risks": "競争、研究開発",
+    "environment": "眼科・免疫疾患治療薬",
+    "market": "US"
+  },
+  {
+    "ticker": "VRTX",
+    "name": "Vertex Pharmaceuticals",
+    "business": "バイオ医薬品",
+    "brands": "Trikafta、Casgevy",
+    "risks": "研究開発、製品集中",
+    "environment": "希少疾患治療薬",
+    "market": "US"
+  },
+  {
+    "ticker": "ISRG",
+    "name": "Intuitive Surgical",
+    "business": "手術支援ロボット",
+    "brands": "da Vinci、Ion",
+    "risks": "設備投資、競争",
+    "environment": "ロボット手術の普及",
+    "market": "US"
+  },
+  {
+    "ticker": "TMO",
+    "name": "Thermo Fisher Scientific",
+    "business": "科学機器",
+    "brands": "質量分析装置、検査試薬",
+    "risks": "研究投資、競争",
+    "environment": "製薬研究と検査需要",
+    "market": "US"
+  },
+  {
+    "ticker": "DHR",
+    "name": "Danaher",
+    "business": "ライフサイエンス機器",
+    "brands": "Cytiva、Beckman Coulter",
+    "risks": "研究投資、競争",
+    "environment": "医薬品製造・研究需要",
+    "market": "US"
+  },
+  {
+    "ticker": "CAT",
+    "name": "Caterpillar",
+    "business": "建設・鉱山機械",
+    "brands": "CAT、建設機械、発電設備",
+    "risks": "景気、資源価格",
+    "environment": "インフラ・鉱山投資",
+    "market": "US"
+  },
+  {
+    "ticker": "DE",
+    "name": "Deere & Company",
+    "business": "農業機械",
+    "brands": "John Deere、農業トラクター",
+    "risks": "農業市況、関税",
+    "environment": "農業設備投資",
+    "market": "US"
+  },
+  {
+    "ticker": "GE",
+    "name": "GE Aerospace",
+    "business": "航空エンジン",
+    "brands": "LEAP、航空機エンジン",
+    "risks": "品質、航空需要",
+    "environment": "航空機製造と整備需要",
+    "market": "US"
+  },
+  {
+    "ticker": "BA",
+    "name": "Boeing",
+    "business": "航空機・防衛",
+    "brands": "737、787、航空宇宙",
+    "risks": "品質、負債",
+    "environment": "航空機納入と防衛需要",
+    "market": "US"
+  },
+  {
+    "ticker": "LMT",
+    "name": "Lockheed Martin",
+    "business": "防衛・航空宇宙",
+    "brands": "F-35、ミサイル防衛",
+    "risks": "政府予算、案件",
+    "environment": "防衛予算と航空宇宙需要",
+    "market": "US"
+  },
+  {
+    "ticker": "RTX",
+    "name": "RTX Corporation",
+    "business": "航空宇宙・防衛",
+    "brands": "Pratt & Whitney、Raytheon",
+    "risks": "品質、政府予算",
+    "environment": "航空エンジンと防衛需要",
+    "market": "US"
+  },
+  {
+    "ticker": "HON",
+    "name": "Honeywell",
+    "business": "産業機器",
+    "brands": "航空宇宙、ビル制御",
+    "risks": "設備投資、競争",
+    "environment": "産業自動化と航空需要",
+    "market": "US"
+  },
+  {
+    "ticker": "UPS",
+    "name": "United Parcel Service",
+    "business": "物流・宅配",
+    "brands": "UPS Ground、UPS Air",
+    "risks": "燃料費、人件費",
+    "environment": "物流需要と配送単価",
+    "market": "US"
+  },
+  {
+    "ticker": "FDX",
+    "name": "FedEx",
+    "business": "物流・宅配",
+    "brands": "FedEx Express、FedEx Ground",
+    "risks": "燃料費、景気",
+    "environment": "国際物流とEC配送",
+    "market": "US"
+  },
+  {
+    "ticker": "DAL",
+    "name": "Delta Air Lines",
+    "business": "航空",
+    "brands": "Delta、SkyMiles",
+    "risks": "燃料費、景気",
+    "environment": "旅客需要と航空運賃",
+    "market": "US"
+  },
+  {
+    "ticker": "UAL",
+    "name": "United Airlines",
+    "business": "航空",
+    "brands": "United、MileagePlus",
+    "risks": "燃料費、景気",
+    "environment": "国際線需要",
+    "market": "US"
+  },
+  {
+    "ticker": "XOM",
+    "name": "Exxon Mobil",
+    "business": "石油・ガス",
+    "brands": "Exxon、Mobil",
+    "risks": "原油価格、規制",
+    "environment": "原油・天然ガス市況",
+    "market": "US"
+  },
+  {
+    "ticker": "CVX",
+    "name": "Chevron",
+    "business": "石油・ガス",
+    "brands": "Chevron、Texaco",
+    "risks": "原油価格、規制",
+    "environment": "原油・天然ガス市況",
+    "market": "US"
+  },
+  {
+    "ticker": "COP",
+    "name": "ConocoPhillips",
+    "business": "石油・ガス開発",
+    "brands": "石油・ガス探鉱開発",
+    "risks": "原油価格、地政学",
+    "environment": "原油価格と生産量",
+    "market": "US"
+  },
+  {
+    "ticker": "NEE",
+    "name": "NextEra Energy",
+    "business": "電力・再生可能エネルギー",
+    "brands": "Florida Power & Light、NextEra Energy Resources",
+    "risks": "金利、設備投資",
+    "environment": "電力需要と再生可能エネルギー",
+    "market": "US"
+  },
+  {
+    "ticker": "DUK",
+    "name": "Duke Energy",
+    "business": "電力会社",
+    "brands": "Duke Energy、電力供給",
+    "risks": "規制、設備投資",
+    "environment": "電力需要と料金規制",
+    "market": "US"
+  },
+  {
+    "ticker": "CEG",
+    "name": "Constellation Energy",
+    "business": "発電・電力",
+    "brands": "原子力発電、電力販売",
+    "risks": "規制、設備投資",
+    "environment": "データセンター電力需要",
+    "market": "US"
+  },
+  {
+    "ticker": "KO",
+    "name": "Coca-Cola",
+    "business": "飲料",
+    "brands": "Coca-Cola、Sprite、Fanta",
+    "risks": "原材料、為替",
+    "environment": "世界の清涼飲料需要",
+    "market": "US"
+  },
+  {
+    "ticker": "PEP",
+    "name": "PepsiCo",
+    "business": "飲料・食品",
+    "brands": "Pepsi、Lay's、Gatorade",
+    "risks": "原材料、消費",
+    "environment": "飲料とスナック需要",
+    "market": "US"
+  },
+  {
+    "ticker": "PG",
+    "name": "Procter & Gamble",
+    "business": "日用品",
+    "brands": "Pampers、Tide、Gillette",
+    "risks": "原材料、競争",
+    "environment": "日用品と価格転嫁",
+    "market": "US"
+  },
+  {
+    "ticker": "CL",
+    "name": "Colgate-Palmolive",
+    "business": "日用品",
+    "brands": "Colgate、Palmolive、Hill's",
+    "risks": "原材料、為替",
+    "environment": "歯磨きとペットフード",
+    "market": "US"
+  },
+  {
+    "ticker": "KHC",
+    "name": "Kraft Heinz",
+    "business": "加工食品",
+    "brands": "Heinz、Kraft、Philadelphia",
+    "risks": "売上減、減損",
+    "environment": "加工食品とブランド再建",
+    "market": "US"
+  },
+  {
+    "ticker": "HRL",
+    "name": "Hormel Foods",
+    "business": "加工食品",
+    "brands": "SPAM、SKIPPY、Planters",
+    "risks": "原材料、利益率",
+    "environment": "加工食品需要",
+    "market": "US"
+  },
+  {
+    "ticker": "GIS",
+    "name": "General Mills",
+    "business": "加工食品",
+    "brands": "Cheerios、Häagen-Dazs",
+    "risks": "原材料、消費",
+    "environment": "食品需要と価格転嫁",
+    "market": "US"
+  },
+  {
+    "ticker": "CPB",
+    "name": "The Campbell's Company",
+    "business": "加工食品",
+    "brands": "Campbell's、Goldfish",
+    "risks": "原材料、競争",
+    "environment": "加工食品とスナック需要",
+    "market": "US"
+  },
+  {
+    "ticker": "WMT",
+    "name": "Walmart",
+    "business": "小売",
+    "brands": "Walmart、Sam's Club",
+    "risks": "人件費、消費",
+    "environment": "食品小売とEC",
+    "market": "US"
+  },
+  {
+    "ticker": "COST",
+    "name": "Costco Wholesale",
+    "business": "会員制小売",
+    "brands": "Costco、Kirkland Signature",
+    "risks": "会員数、評価額",
+    "environment": "会員制小売と消費",
+    "market": "US"
+  },
+  {
+    "ticker": "TGT",
+    "name": "Target",
+    "business": "総合小売",
+    "brands": "Target、Good & Gather",
+    "risks": "消費低迷、在庫",
+    "environment": "米国消費と店舗収益",
+    "market": "US"
+  },
+  {
+    "ticker": "HD",
+    "name": "Home Depot",
+    "business": "住宅用品小売",
+    "brands": "Home Depot、Husky",
+    "risks": "住宅市況、金利",
+    "environment": "住宅リフォーム需要",
+    "market": "US"
+  },
+  {
+    "ticker": "LOW",
+    "name": "Lowe's",
+    "business": "住宅用品小売",
+    "brands": "Lowe's、Kobalt",
+    "risks": "住宅市況、金利",
+    "environment": "住宅リフォーム需要",
+    "market": "US"
+  },
+  {
+    "ticker": "NKE",
+    "name": "Nike",
+    "business": "スポーツ用品",
+    "brands": "Nike、Jordan、Converse",
+    "risks": "競争、中国需要",
+    "environment": "ブランド再建とスポーツ需要",
+    "market": "US"
+  },
+  {
+    "ticker": "LULU",
+    "name": "Lululemon Athletica",
+    "business": "スポーツ衣料",
+    "brands": "lululemon、Align",
+    "risks": "競争、消費",
+    "environment": "スポーツ衣料と海外展開",
+    "market": "US"
+  },
+  {
+    "ticker": "SBUX",
+    "name": "Starbucks",
+    "business": "コーヒーチェーン",
+    "brands": "Starbucks、Reserve",
+    "risks": "人件費、中国需要",
+    "environment": "既存店売上と店舗再建",
+    "market": "US"
+  },
+  {
+    "ticker": "MCD",
+    "name": "McDonald's",
+    "business": "外食チェーン",
+    "brands": "McDonald's、McCafé",
+    "risks": "人件費、消費",
+    "environment": "外食需要と加盟店",
+    "market": "US"
+  },
+  {
+    "ticker": "CMG",
+    "name": "Chipotle Mexican Grill",
+    "business": "外食チェーン",
+    "brands": "Chipotle、ブリトー、ボウル",
+    "risks": "食材費、人件費",
+    "environment": "外食需要と既存店売上",
+    "market": "US"
+  },
+  {
+    "ticker": "DIS",
+    "name": "Walt Disney",
+    "business": "エンタメ・テーマパーク",
+    "brands": "Disney、Marvel、Pixar、Disney+",
+    "risks": "制作費、競争",
+    "environment": "テーマパークと動画配信",
+    "market": "US"
+  },
+  {
+    "ticker": "NFLX",
+    "name": "Netflix",
+    "business": "動画配信",
+    "brands": "Netflix、Netflix Originals",
+    "risks": "制作費、競争",
+    "environment": "有料会員と広告配信",
+    "market": "US"
+  },
+  {
+    "ticker": "CMCSA",
+    "name": "Comcast",
+    "business": "通信・メディア",
+    "brands": "Xfinity、NBC、Universal",
+    "risks": "通信競争、負債",
+    "environment": "ブロードバンドと動画配信",
+    "market": "US"
+  },
+  {
+    "ticker": "VZ",
+    "name": "Verizon Communications",
+    "business": "通信",
+    "brands": "Verizon Wireless、Fios",
+    "risks": "競争、設備投資",
+    "environment": "5G通信と契約者数",
+    "market": "US"
+  },
+  {
+    "ticker": "T",
+    "name": "AT&T",
+    "business": "通信",
+    "brands": "AT&T、5G、光ファイバー",
+    "risks": "競争、負債",
+    "environment": "通信料金と光回線",
+    "market": "US"
+  },
+  {
+    "ticker": "TMUS",
+    "name": "T-Mobile US",
+    "business": "通信",
+    "brands": "T-Mobile、5G Home Internet",
+    "risks": "競争、設備投資",
+    "environment": "携帯通信と家庭向けネット",
+    "market": "US"
+  },
+  {
+    "ticker": "AMT",
+    "name": "American Tower",
+    "business": "通信塔REIT",
+    "brands": "通信塔リース",
+    "risks": "金利、負債",
+    "environment": "通信設備投資",
+    "market": "US"
+  },
+  {
+    "ticker": "CCI",
+    "name": "Crown Castle",
+    "business": "通信塔REIT",
+    "brands": "通信塔リース",
+    "risks": "金利、負債",
+    "environment": "通信設備投資",
+    "market": "US"
+  },
+  {
+    "ticker": "VRSK",
+    "name": "Verisk Analytics",
+    "business": "保険データ分析",
+    "brands": "保険リスク分析、請求分析",
+    "risks": "競争、規制",
+    "environment": "保険会社のデータ需要",
+    "market": "US"
+  },
+  {
+    "ticker": "EL",
+    "name": "Estée Lauder",
+    "business": "化粧品",
+    "brands": "Estée Lauder、Clinique、La Mer",
+    "risks": "中国需要、利益率",
+    "environment": "高級化粧品市場",
+    "market": "US"
+  },
+  {
+    "ticker": "FIS",
+    "name": "Fidelity National Information Services",
+    "business": "金融IT",
+    "brands": "決済システム、銀行IT",
+    "risks": "競争、システム",
+    "environment": "銀行のデジタル化",
+    "market": "US"
+  }
+]
