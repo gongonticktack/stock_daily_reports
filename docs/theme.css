@@ -81,3 +81,6 @@ html[lang="en"] p.lang-en,html[lang="en"] div.lang-en{display:block}
 .stock-report .report-content>h3~p a{overflow-wrap:anywhere}
 .stock-report .report-content>p:first-of-type{color:#cdbaff}
 @media(max-width:720px){.stock-home-cards{grid-template-columns:1fr}.stock-report{padding:19px}.stock-report .report-content th,.stock-report .report-content td{padding:9px 12px}}
+
+/* Offset stock anchors below the sticky header, including mobile wrapping. */
+.stock-report h3[id],#archive{scroll-margin-top:140px}

@@ -44,10 +44,16 @@ scripts/create_universe.py    # 監視銘柄リストを再生成（任意）
 data/history.json             # 14日間の重複回避履歴
 reports/YYYY-MM-DD.md         # 日付別Markdown原本
 docs/index.html               # 日報一覧
+docs/summary/YYYY-MM-DD.html  # 日付別の銘柄サマリ（トップは最新日）
 docs/reports/YYYY-MM-DD.html  # 公開用日報
 requirements.txt              # Python依存パッケージ
 tests/test_report.py          # オフライン単体テスト
+tests/test_site.py            # 日英表示・銘柄アンカー・日付別サマリのテスト
 ```
+
+トップの「詳しい分析を見る」は当日の詳細レポートの銘柄見出しへ移動します。IDは市場・分類・ティッカーと同一分類内の出現回数から決定し、同名銘柄やJP/USの重複を区別します。日英の見出しIDも分離し、保存された表示言語に応じてスクロールします。固定ヘッダー分の余白を設けています。
+
+日付別サマリは保存済みの `reports/YYYY-MM-DD.md` から生成し、アーカイブにサマリと詳細レポートの両方のリンクを表示します。毎朝の既存Actionsでサマリも保存・公開します。日英切替、翻訳失敗時の原文と注意表示、株価・日付の保持は継続します。
 
 ## ローカル実行
 

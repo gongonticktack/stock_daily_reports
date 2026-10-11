@@ -1,5 +1,8 @@
 import sys
 import unittest
+import tempfile
+from urllib.parse import urlsplit
+from bs4 import BeautifulSoup
 from pathlib import Path
 from unittest.mock import patch
 
@@ -8,6 +11,70 @@ import build_site as site
 
 
 class SiteTests(unittest.TestCase):
+    @staticmethod
+    def fixture():
+        def group(market, label, stocks):
+            return '## ' + market + '｜' + label + '\n\n' + ''.join(
+                '### ' + name + '｜' + ticker + '\n\n**直近終値：123.45円**\n\n'
+                for name, ticker in stocks)
+        return (group('日本株', '注目候補', [('同名', 'ABC'), ('同名', 'XYZ'), ('同名', 'ABC')]) +
+                group('米国株', '注目候補', [('同名', 'ABC')]) +
+                group('日本株', '安値圏', [('同名', 'ABC')]))
+
+    def test_unique_bilingual_anchor_targets_and_stability(self):
+        source = self.fixture()
+        translator = site.Translator(cache={}, limit=0)
+        detail = BeautifulSoup(site.render_report(source, '2026-10-12', translator), 'html.parser')
+        ids = [h['id'] for h in detail.select('h3[id]')]
+        self.assertEqual(len(ids), 10)
+        self.assertEqual(len(ids), len(set(ids)))
+        digest = BeautifulSoup(site.market_digest(source, '2026-10-12', translator), 'html.parser')
+        for link in digest.select('a.link'):
+            anchor = urlsplit(link['href']).fragment
+            for suffix in ('', '-en'):
+                self.assertEqual(len(detail.select('[id="' + anchor + suffix + '"]')), 1)
+        anchors = lambda text: [c['anchor'] for _, _, cards in site.extract_market_cards(text) for c in cards]
+        self.assertEqual(anchors(source), anchors(source.replace('同名', '社名変更')))
+        reordered = source.replace('### 同名｜XYZ\n\n**直近終値：123.45円**\n\n', '')
+        self.assertEqual(anchors(source)[0], anchors(reordered)[0])
+        self.assertEqual(anchors(source)[2], anchors(reordered)[1])
+
+    def test_build_daily_summaries_latest_archive_and_rebuild(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            (root / 'reports').mkdir()
+            for day, ticker in [('2026-10-11', 'OLDCO'), ('2026-10-12', 'NEWCO')]:
+                (root / 'reports' / (day + '.md')).write_text(
+                    '## 日本株｜注目候補\n\n### 同名｜' + ticker + '\n\n**直近終値：123.45円**\n', encoding='utf-8')
+            with patch.object(site, 'ROOT', root), patch.object(site, 'DOCS', root / 'docs'), \
+                 patch.object(site, 'CACHE_PATH', root / 'data/cache.json'), \
+                 patch.dict('os.environ', {'TRANSLATION_REQUEST_LIMIT': '0'}):
+                site.main()
+                old = (root / 'docs/summary/2026-10-11.html').read_text(encoding='utf-8')
+                index = (root / 'docs/index.html').read_text(encoding='utf-8')
+                self.assertIn('NEWCO', index)
+                self.assertNotIn('OLDCO', index)
+                self.assertIn('OLDCO', old)
+                self.assertNotIn('NEWCO', old)
+                self.assertIn('href="../theme.css"', old)
+                self.assertIn('href="../index.html"', old)
+                self.assertIn('href="summary/2026-10-11.html"', index)
+                self.assertIn('href="../reports/2026-10-11.html#stock-', old)
+                self.assertIn('translation-note', old)
+                for tag in ('JP MARKET', 'US MARKET', 'MARKET WATCH', 'feature-icon'):
+                    self.assertNotIn(tag, index)
+                for summary in (root / 'docs/summary').glob('*.html'):
+                    soup = BeautifulSoup(summary.read_text(encoding='utf-8'), 'html.parser')
+                    for link in soup.select('a[href]'):
+                        url = urlsplit(link['href'])
+                        target = (summary.parent / url.path).resolve()
+                        self.assertTrue(target.exists(), link['href'])
+                        if url.fragment.startswith('stock-'):
+                            detail = BeautifulSoup(target.read_text(encoding='utf-8'), 'html.parser')
+                            self.assertIsNotNone(detail.find(id=url.fragment))
+                site.main()
+                self.assertEqual(old, (root / 'docs/summary/2026-10-11.html').read_text(encoding='utf-8'))
+
     def test_bilingual_toggle_and_language_memory(self):
         page = site.shell('STOCK NEWS', '<p>News</p>')
         self.assertIn('data-set-lang="ja"', page)
