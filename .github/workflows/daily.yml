@@ -7,6 +7,8 @@ on:
       - '.github/workflows/daily.yml'
       - 'config/**'
       - 'scripts/**'
+      - 'tests/**'
+      - 'docs/theme.css'
       - 'requirements.txt'
   schedule:
     # 22:00 UTC = 07:00 JST the following day (JST has no DST).
