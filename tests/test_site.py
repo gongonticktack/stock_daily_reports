@@ -86,6 +86,8 @@ class SiteTests(unittest.TestCase):
                     soup = BeautifulSoup(summary.read_text(encoding='utf-8'), 'html.parser')
                     for link in soup.select('a[href]'):
                         url = urlsplit(link['href'])
+                        if url.scheme or url.netloc:
+                            continue
                         target = (summary.parent / url.path).resolve()
                         self.assertTrue(target.exists(), link['href'])
                         if url.fragment.startswith('stock-'):

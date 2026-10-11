@@ -202,7 +202,9 @@ def shell(title, content, *, in_report=False):
         '<footer>' + bilingual(
             '株価・ニュースの取得日時をご確認ください。情報提供を目的とし、投資助言ではありません。',
             'Check the source dates for prices and news. For information only; not investment advice.'
-        ) + '</footer></main>' + lang_script() + '</body></html>'
+        ) + '<div><a class="sister-site" href="https://gongonticktack.github.io/it_news/">' +
+        bilingual('IT NEWS を読む ↗', 'Visit IT NEWS ↗') +
+        '</a></div></footer></main>' + lang_script() + '</body></html>'
     )
 
 
