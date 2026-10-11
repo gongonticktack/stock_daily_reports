@@ -206,7 +206,69 @@ def render_report(markdown_text, day, translator):
     return shell('STOCK NEWS｜' + day, hero + notice + body, in_report=True)
 
 
-def render_index(days):
+def extract_market_cards(report):
+    """Extract real stock picks and prices from the archived markdown."""
+    groups = []
+    sections = re.finditer(r'(?ms)^## (日本株|米国株)｜([^\n]+)\n(.*?)(?=^## |\Z)', report)
+    for section in sections:
+        market, label, body = section.groups()
+        cards = []
+        for match in re.finditer(r'(?ms)^### ([^\n]+)\n(.*?)(?=^### |^## |\Z)', body):
+            heading, detail = match.groups()
+            if '｜' not in heading:
+                continue
+            name, ticker = heading.rsplit('｜', 1)
+            price = re.search(r'\*\*直近終値：([^\n*]+)\*\*', detail)
+            business = re.search(r'\*\*事業概要（登録情報）：\*\*\s*([^\n]+)', detail)
+            reason = re.search(r'\*\*事実・注目理由：\*\*\s*([^\n]+)', detail)
+            cards.append({
+                'name': name.strip(), 'ticker': ticker.strip(),
+                'price': price.group(1).strip() if price else '',
+                'business': business.group(1).strip() if business else '',
+                'reason': reason.group(1).strip() if reason else '',
+            })
+        if cards:
+            groups.append((market, label, cards))
+    return groups
+
+
+def market_digest(report, day, translator):
+    groups = extract_market_cards(report)
+    if not groups:
+        return ('<section class="story"><p>' +
+                bilingual('最新レポートで銘柄情報をご確認ください。',
+                          'Open the latest report for stock details.') +
+                '</p><a class="link" href="reports/' + esc(day) + '.html">' +
+                bilingual('レポートを開く ↗', 'Open report ↗') + '</a></section>')
+    out = '<div class="section-title"><h2>' + bilingual(
+        '最新の注目銘柄', 'Latest Stocks to Watch') + '</h2></div>'
+    for market, label, cards in groups:
+        low = '安値圏' in label
+        group_en = ('Five-Year Low Candidates' if low else 'Market Movers / Stocks to Watch')
+        out += ('<div class="section-title"><h2>' +
+                bilingual(market + '｜' + label, ('Japan' if market == '日本株' else 'US') +
+                          ' | ' + group_en) + '</h2></div><section class="news stock-home-cards">')
+        for number, card in enumerate(cards, 1):
+            name_en = translator.translate(card['name'])
+            business_en = translator.translate(card['business']) if card['business'] else ''
+            reason_en = translator.translate(card['reason']) if card['reason'] else ''
+            out += ('<article class="story"><div class="meta">'
+                    '<span class="tag">' + ('JP' if market == '日本株' else 'US') +
+                    (' · 5Y LOW' if low else ' · MOVERS') + '</span>'
+                    '<span>#' + str(number).zfill(2) + '</span>'
+                    '<span>' + esc(card['ticker']) + '</span></div>'
+                    '<h2>' + bilingual(card['name'], name_en) + '</h2>'
+                    '<p class="stock-price">' + esc(card['price']) + '</p>'
+                    '<p>' + bilingual(card['business'], business_en) + '</p>'
+                    '<p class="why"><strong>' + bilingual('注目理由：', 'Why it matters: ') +
+                    '</strong>' + bilingual(card['reason'], reason_en) + '</p>'
+                    '<a class="link" href="reports/' + esc(day) + '.html">' +
+                    bilingual('詳しい分析を見る ↗', 'Full analysis ↗') + '</a></article>')
+        out += '</section>'
+    return out
+
+
+def render_index(days, translator):
     latest = days[0] if days else None
     hero = ('<section class="hero"><div class="eyebrow">YOUR DAILY MARKET SIGNAL</div>'
             '<h1 class="gradient-text">STOCK NEWS.</h1><p>' +
@@ -243,7 +305,11 @@ def render_index(days):
                ''.join('<li><a href="reports/' + esc(day) + '.html">' +
                        bilingual(day + ' の株式日報', 'Stock report — ' + day) +
                        '</a></li>' for day in days) + '</ul></section>')
-    return shell('STOCK NEWS｜日本株・米国株の日報', hero + cards + archive)
+    latest_digest = ''
+    if latest:
+        latest_path = ROOT / 'reports' / (latest + '.md')
+        latest_digest = market_digest(latest_path.read_text(encoding='utf-8'), latest, translator)
+    return shell('STOCK NEWS｜日本株・米国株の日報', hero + latest_digest + cards + archive)
 
 
 def main():
@@ -256,7 +322,7 @@ def main():
         source = path.read_text(encoding='utf-8')
         page = render_report(source, path.stem, translator)
         (DOCS / 'reports' / (path.stem + '.html')).write_text(page, encoding='utf-8')
-    (DOCS / 'index.html').write_text(render_index([p.stem for p in reports]), encoding='utf-8')
+    (DOCS / 'index.html').write_text(render_index([p.stem for p in reports], translator), encoding='utf-8')
     CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
     CACHE_PATH.write_text(json.dumps(translator.cache, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(f'STOCK NEWS: {len(reports)} bilingual reports; '
