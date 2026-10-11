@@ -206,7 +206,25 @@ def shell(title, content, *, in_report=False):
     )
 
 
-def render_report(markdown_text, day, translator):
+def date_navigation(day, days, *, base='', folder='summary/'):
+    ordered = sorted(set(days))
+    if day not in ordered:
+        return ''
+    index = ordered.index(day)
+    def button(target, ja, en, relation):
+        label = bilingual(ja, en)
+        if target is None:
+            return '<span class="date-button" aria-disabled="true">' + label + '</span>'
+        return ('<a class="date-button" rel="' + relation + '" href="' + base + folder +
+                esc(target) + '.html" title="' + esc(target) + '">' + label + '</a>')
+    return ('<nav class="date-navigation" aria-label="日付移動 / Browse dates">' +
+            button(ordered[index - 1] if index else None, '← 前日', '← Previous', 'prev') +
+            '<time datetime="' + esc(day) + '">' + esc(day) + '</time>' +
+            button(ordered[index + 1] if index + 1 < len(ordered) else None,
+                   '翌日 →', 'Next →', 'next') + '</nav>')
+
+
+def render_report(markdown_text, day, translator, days=None):
     ja_html = markdown.markdown(markdown_text, extensions=['tables', 'fenced_code'])
     soup = BeautifulSoup(ja_html, 'html.parser')
     anchors = iter(card['anchor'] for _, _, cards in extract_market_cards(markdown_text)
@@ -237,7 +255,8 @@ def render_report(markdown_text, day, translator):
             '<div class="report-content lang-ja">' + ja_html + '</div>'
             '<div class="report-content lang-en">' + en_html + '</div>'
             '</section>')
-    return shell('STOCK NEWS｜' + day, hero + notice + body, in_report=True)
+    navigation = date_navigation(day, days or [day], base='../', folder='reports/')
+    return shell('STOCK NEWS｜' + day, navigation + hero + notice + body, in_report=True)
 
 
 def extract_market_cards(report):
@@ -323,8 +342,6 @@ def render_index(days, translator, *, day=None, in_summary=False):
                bilingual('過去の記事', 'Previous editions') + '</h2><ul>' +
                ''.join('<li><a href="' + base + 'summary/' + esc(date) + '.html">' +
                        bilingual(date + ' のサマリ', 'Summary — ' + date) +
-                       '</a><a href="' + base + 'reports/' + esc(date) + '.html">' +
-                       bilingual('詳細レポート', 'Full report') +
                        '</a></li>' for date in days) + '</ul></section>')
     latest_digest = ''
     notice = ''
@@ -338,7 +355,8 @@ def render_index(days, translator, *, day=None, in_summary=False):
                 'Some passages could not be translated; original Japanese text is shown.'
             ) + '</p>')
     title = 'STOCK NEWS｜' + (latest or '日本株・米国株の日報')
-    return shell(title, hero + notice + latest_digest + cards + archive, in_report=in_summary)
+    navigation = date_navigation(latest, days, base=base) if latest else ''
+    return shell(title, navigation + hero + notice + latest_digest + cards + archive, in_report=in_summary)
 
 
 def main():
@@ -347,12 +365,12 @@ def main():
     (DOCS / 'reports').mkdir(parents=True, exist_ok=True)
     (DOCS / 'summary').mkdir(parents=True, exist_ok=True)
     reports = sorted((ROOT / 'reports').glob('????-??-??.md'), reverse=True)
+    days = [p.stem for p in reports]
     translator = Translator(limit=int(os.getenv('TRANSLATION_REQUEST_LIMIT', '40')))
     for path in reports:
         source = path.read_text(encoding='utf-8')
-        page = render_report(source, path.stem, translator)
+        page = render_report(source, path.stem, translator, days)
         (DOCS / 'reports' / (path.stem + '.html')).write_text(page, encoding='utf-8')
-    days = [p.stem for p in reports]
     for day in days:
         (DOCS / 'summary' / (day + '.html')).write_text(
             render_index(days, translator, day=day, in_summary=True), encoding='utf-8')

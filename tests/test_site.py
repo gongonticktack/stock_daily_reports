@@ -11,6 +11,21 @@ import build_site as site
 
 
 class SiteTests(unittest.TestCase):
+    def test_date_navigation_boundaries_gaps_and_paths(self):
+        days = ['2026-10-12', '2026-10-10', '2026-10-08']
+        for day, prev, next_day in [('2026-10-08', None, '2026-10-10'),
+                                   ('2026-10-10', '2026-10-08', '2026-10-12'),
+                                   ('2026-10-12', '2026-10-10', None)]:
+            soup = BeautifulSoup(site.date_navigation(day, days, base='../'), 'html.parser')
+            self.assertEqual(soup.time['datetime'], day)
+            for relation, target in [('prev', prev), ('next', next_day)]:
+                link = soup.find('a', rel=relation)
+                if target:
+                    self.assertEqual(link['href'], '../summary/' + target + '.html')
+                else:
+                    self.assertIsNone(link)
+            self.assertEqual(len(soup.select('[aria-disabled="true"]')), int(prev is None) + int(next_day is None))
+
     @staticmethod
     def fixture():
         def group(market, label, stocks):
@@ -59,6 +74,10 @@ class SiteTests(unittest.TestCase):
                 self.assertIn('href="../theme.css?v=', old)
                 self.assertIn('href="../index.html"', old)
                 self.assertIn('href="summary/2026-10-11.html"', index)
+                archive = BeautifulSoup(index, 'html.parser').find(id='archive')
+                self.assertEqual(len(archive.select('a')), 2)
+                self.assertTrue(all(a['href'].startswith('summary/') for a in archive.select('a')))
+                self.assertLess(index.index('class="date-navigation"'), index.index('class="hero"'))
                 self.assertIn('href="../reports/2026-10-11.html#stock-', old)
                 self.assertIn('translation-note', old)
                 for tag in ('JP MARKET', 'US MARKET', 'MARKET WATCH', 'feature-icon'):
