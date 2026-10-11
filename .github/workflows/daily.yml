@@ -1,6 +1,13 @@
 name: Japanese stock daily report
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/daily.yml'
+      - 'config/**'
+      - 'scripts/**'
+      - 'requirements.txt'
   schedule:
     # 22:00 UTC = 07:00 JST the following day (JST has no DST).
     # GitHub Actions schedules may be delayed; exact 07:00 delivery is NOT guaranteed.
