@@ -118,7 +118,11 @@ class Translator:
                 translated = self.backup.translate(clean[:450]) or ''
             except Exception as exc:
                 LOG.warning('Backup translation failed: %s', str(exc)[:150])
-        if translated and not JAPANESE.search(translated):
+        # Reject translations that change financial figures, percentages or dates.
+        numeric = re.compile(r'(?<!\w)[+-]?\d[\d,]*(?:\.\d+)?%?')
+        original_numbers = sorted(numeric.findall(clean))
+        translated_numbers = sorted(numeric.findall(translated))
+        if translated and not JAPANESE.search(translated) and original_numbers == translated_numbers:
             self.cache[clean] = translated
             self.failures = 0
             return text.replace(clean, translated)
@@ -306,10 +310,17 @@ def render_index(days, translator):
                        bilingual(day + ' の株式日報', 'Stock report — ' + day) +
                        '</a></li>' for day in days) + '</ul></section>')
     latest_digest = ''
+    notice = ''
     if latest:
         latest_path = ROOT / 'reports' / (latest + '.md')
+        before = translator.untranslated
         latest_digest = market_digest(latest_path.read_text(encoding='utf-8'), latest, translator)
-    return shell('STOCK NEWS｜日本株・米国株の日報', hero + latest_digest + cards + archive)
+        if translator.untranslated > before:
+            notice = ('<p class="translation-note">' + bilingual(
+                '一部の英訳を取得できませんでした。該当箇所は日本語の原文を表示しています。',
+                'Some passages could not be translated; original Japanese text is shown.'
+            ) + '</p>')
+    return shell('STOCK NEWS｜日本株・米国株の日報', hero + notice + latest_digest + cards + archive)
 
 
 def main():
