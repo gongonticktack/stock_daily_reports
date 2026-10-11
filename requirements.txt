@@ -4,3 +4,5 @@ requests>=2.32,<3
 feedparser>=6.0.11,<7
 Markdown>=3.7,<4
 openai>=1.60,<3
+beautifulsoup4>=4.12,<5
+deep-translator>=1.11.4,<2
