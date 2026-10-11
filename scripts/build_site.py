@@ -181,13 +181,15 @@ def lang_script():
 
 def shell(title, content, *, in_report=False):
     base = '../' if in_report else ''
+    stylesheet = DOCS / 'theme.css'
+    css_version = hashlib.sha256(stylesheet.read_bytes()).hexdigest()[:12] if stylesheet.exists() else '1'
     return (
         '<!doctype html><html lang="ja"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1">'
         '<meta name="theme-color" content="#0a0919">'
         '<meta name="description" content="Daily Japanese and US stock market reports, available in Japanese and English">'
         '<title>' + esc(title) + '</title>'
-        '<link rel="stylesheet" href="' + base + 'theme.css"></head><body>'
+        '<link rel="stylesheet" href="' + base + 'theme.css?v=' + css_version + '"></head><body>'
         '<header><div class="top">'
         '<a class="brand" href="' + base + 'index.html">STOCK <b>NEWS</b></a>'
         '<nav><a href="' + base + 'index.html">' + bilingual('最新号', 'Latest') + '</a>'

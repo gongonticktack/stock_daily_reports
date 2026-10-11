@@ -56,7 +56,7 @@ class SiteTests(unittest.TestCase):
                 self.assertNotIn('OLDCO', index)
                 self.assertIn('OLDCO', old)
                 self.assertNotIn('NEWCO', old)
-                self.assertIn('href="../theme.css"', old)
+                self.assertIn('href="../theme.css?v=', old)
                 self.assertIn('href="../index.html"', old)
                 self.assertIn('href="summary/2026-10-11.html"', index)
                 self.assertIn('href="../reports/2026-10-11.html#stock-', old)
