@@ -39,16 +39,21 @@ jobs:
           python-version: '3.11'
           cache: 'pip'
       - run: pip install -r requirements.txt
+      - name: Test site renderer
+        run: python -m unittest discover -s tests -v
       - name: Generate report
+        if: github.event_name != 'push'
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: gpt-4.1-mini
         run: python scripts/daily_report.py
+      - name: Build bilingual STOCK NEWS site
+        run: python scripts/build_site.py
       - name: Save reports and selection history to repository
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add reports docs data/history.json
+          git add reports docs data/history.json data/translations_en.json
           if ! git diff --cached --quiet; then
             git commit -m "Daily stock report $(TZ=Asia/Tokyo date +%F)"
             for attempt in 1 2 3; do
