@@ -51,7 +51,11 @@ jobs:
           git add reports docs data/history.json
           if ! git diff --cached --quiet; then
             git commit -m "Daily stock report $(TZ=Asia/Tokyo date +%F)"
-            git push
+            for attempt in 1 2 3; do
+              if git push; then break; fi
+              git pull --rebase -X ours origin main
+              if [ "$attempt" -eq 3 ]; then exit 1; fi
+            done
           fi
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
