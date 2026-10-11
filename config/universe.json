@@ -1,0 +1,1000 @@
+[
+  {
+    "ticker": "7203.T",
+    "name": "トヨタ自動車",
+    "business": "自動車メーカー",
+    "brands": "トヨタ、レクサス、プリウス",
+    "risks": "為替、関税、EV競争",
+    "environment": "世界の自動車需要とハイブリッド車販売",
+    "market": "JP"
+  },
+  {
+    "ticker": "7267.T",
+    "name": "本田技研工業",
+    "business": "自動車・二輪車メーカー",
+    "brands": "Honda、Acura、シビック",
+    "risks": "EV投資、為替、関税",
+    "environment": "二輪車収益と四輪車再編",
+    "market": "JP"
+  },
+  {
+    "ticker": "7201.T",
+    "name": "日産自動車",
+    "business": "自動車メーカー",
+    "brands": "NISSAN、INFINITI、リーフ",
+    "risks": "財務、販売低迷、構造改革",
+    "environment": "新車販売と固定費削減",
+    "market": "JP"
+  },
+  {
+    "ticker": "7261.T",
+    "name": "マツダ",
+    "business": "自動車メーカー",
+    "brands": "MAZDA、CX-5、ロードスター",
+    "risks": "為替、関税、米国需要",
+    "environment": "北米販売と電動化投資",
+    "market": "JP"
+  },
+  {
+    "ticker": "8306.T",
+    "name": "三菱UFJフィナンシャル・グループ",
+    "business": "銀行・金融グループ",
+    "brands": "三菱UFJ銀行、三菱UFJ信託銀行",
+    "risks": "信用費用、金利、規制",
+    "environment": "金利と貸出需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "8316.T",
+    "name": "三井住友フィナンシャルグループ",
+    "business": "銀行・金融グループ",
+    "brands": "三井住友銀行、SMBC日興証券",
+    "risks": "信用費用、金利",
+    "environment": "貸出金利と金融収益",
+    "market": "JP"
+  },
+  {
+    "ticker": "8411.T",
+    "name": "みずほフィナンシャルグループ",
+    "business": "銀行・金融グループ",
+    "brands": "みずほ銀行、みずほ証券",
+    "risks": "信用費用、システム",
+    "environment": "国内金利と企業融資",
+    "market": "JP"
+  },
+  {
+    "ticker": "8308.T",
+    "name": "りそなホールディングス",
+    "business": "銀行グループ",
+    "brands": "りそな銀行、埼玉りそな銀行",
+    "risks": "金利、信用費用",
+    "environment": "国内金利と個人向け金融",
+    "market": "JP"
+  },
+  {
+    "ticker": "9984.T",
+    "name": "ソフトバンクグループ",
+    "business": "投資持株会社",
+    "brands": "Arm、Vision Fund",
+    "risks": "投資評価、負債、為替",
+    "environment": "AI投資市場と資金調達",
+    "market": "JP"
+  },
+  {
+    "ticker": "9432.T",
+    "name": "NTT",
+    "business": "通信・IT企業",
+    "brands": "ドコモ、OCN、IOWN",
+    "risks": "設備投資、競争",
+    "environment": "通信料金とデータセンター需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "9433.T",
+    "name": "KDDI",
+    "business": "通信事業者",
+    "brands": "au、UQ mobile、povo",
+    "risks": "競争、設備投資",
+    "environment": "携帯通信と金融サービス",
+    "market": "JP"
+  },
+  {
+    "ticker": "9434.T",
+    "name": "ソフトバンク",
+    "business": "通信事業者",
+    "brands": "SoftBank、Y!mobile、PayPay",
+    "risks": "通信競争、負債",
+    "environment": "通信契約と決済サービス",
+    "market": "JP"
+  },
+  {
+    "ticker": "6758.T",
+    "name": "ソニーグループ",
+    "business": "エンタメ・電子機器",
+    "brands": "PlayStation、ソニーミュージック",
+    "risks": "為替、ゲーム競争",
+    "environment": "ゲームと映像・音楽IP",
+    "market": "JP"
+  },
+  {
+    "ticker": "7974.T",
+    "name": "任天堂",
+    "business": "ゲーム機・ゲームソフト",
+    "brands": "Nintendo Switch、マリオ、ゼルダ",
+    "risks": "ハード世代交代、為替",
+    "environment": "新型ゲーム機とソフト販売",
+    "market": "JP"
+  },
+  {
+    "ticker": "9983.T",
+    "name": "ファーストリテイリング",
+    "business": "衣料品小売",
+    "brands": "UNIQLO、GU、Theory",
+    "risks": "為替、中国需要",
+    "environment": "海外ユニクロの成長",
+    "market": "JP"
+  },
+  {
+    "ticker": "3382.T",
+    "name": "セブン＆アイ・ホールディングス",
+    "business": "小売・コンビニ",
+    "brands": "セブン‐イレブン、イトーヨーカドー",
+    "risks": "競争、再編",
+    "environment": "コンビニ収益と事業再編",
+    "market": "JP"
+  },
+  {
+    "ticker": "8267.T",
+    "name": "イオン",
+    "business": "総合小売",
+    "brands": "イオン、マックスバリュ、まいばすけっと",
+    "risks": "人件費、消費低迷",
+    "environment": "食品小売とPB商品の需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "9843.T",
+    "name": "ニトリホールディングス",
+    "business": "家具・生活用品小売",
+    "brands": "ニトリ、デコホーム、N+",
+    "risks": "為替、物流費",
+    "environment": "家具需要と輸入コスト",
+    "market": "JP"
+  },
+  {
+    "ticker": "6098.T",
+    "name": "リクルートホールディングス",
+    "business": "人材・HRテクノロジー",
+    "brands": "Indeed、Glassdoor、SUUMO",
+    "risks": "雇用市場、競争",
+    "environment": "米国採用需要と広告市場",
+    "market": "JP"
+  },
+  {
+    "ticker": "4661.T",
+    "name": "オリエンタルランド",
+    "business": "テーマパーク運営",
+    "brands": "東京ディズニーランド、東京ディズニーシー",
+    "risks": "人件費、設備投資",
+    "environment": "来園者数と客単価",
+    "market": "JP"
+  },
+  {
+    "ticker": "8035.T",
+    "name": "東京エレクトロン",
+    "business": "半導体製造装置",
+    "brands": "成膜装置、エッチング装置",
+    "risks": "半導体市況、輸出規制",
+    "environment": "半導体設備投資",
+    "market": "JP"
+  },
+  {
+    "ticker": "6857.T",
+    "name": "アドバンテスト",
+    "business": "半導体検査装置",
+    "brands": "半導体テスタ、SoCテスト",
+    "risks": "半導体市況、顧客集中",
+    "environment": "AI向け半導体テスト需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "6146.T",
+    "name": "ディスコ",
+    "business": "半導体精密加工装置",
+    "brands": "ダイシングソー、グラインダ",
+    "risks": "設備投資、競争",
+    "environment": "半導体後工程需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "6723.T",
+    "name": "ルネサスエレクトロニクス",
+    "business": "半導体メーカー",
+    "brands": "車載MCU、アナログ半導体",
+    "risks": "在庫調整、車載需要",
+    "environment": "車載・産業半導体需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "4062.T",
+    "name": "イビデン",
+    "business": "半導体パッケージ基板",
+    "brands": "ICパッケージ基板",
+    "risks": "顧客集中、設備投資",
+    "environment": "AI半導体向け基板需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "6526.T",
+    "name": "ソシオネクスト",
+    "business": "半導体設計",
+    "brands": "カスタムSoC",
+    "risks": "顧客集中、設計案件",
+    "environment": "データセンター向けSoC",
+    "market": "JP"
+  },
+  {
+    "ticker": "6323.T",
+    "name": "ローツェ",
+    "business": "半導体搬送装置",
+    "brands": "ウエハ搬送ロボット、ロードポート",
+    "risks": "設備投資、顧客集中",
+    "environment": "半導体工場の設備投資",
+    "market": "JP"
+  },
+  {
+    "ticker": "6501.T",
+    "name": "日立製作所",
+    "business": "IT・社会インフラ",
+    "brands": "Lumada、鉄道システム",
+    "risks": "大型案件、為替",
+    "environment": "DXと電力インフラ投資",
+    "market": "JP"
+  },
+  {
+    "ticker": "6702.T",
+    "name": "富士通",
+    "business": "ITサービス",
+    "brands": "Uvance、サーバー、システム開発",
+    "risks": "受託採算、人材確保",
+    "environment": "企業DXとクラウド移行",
+    "market": "JP"
+  },
+  {
+    "ticker": "6701.T",
+    "name": "NEC",
+    "business": "IT・通信インフラ",
+    "brands": "BluStellar、生体認証",
+    "risks": "官公庁案件、競争",
+    "environment": "ITサービスと通信インフラ",
+    "market": "JP"
+  },
+  {
+    "ticker": "6503.T",
+    "name": "三菱電機",
+    "business": "産業機器・電機",
+    "brands": "FA機器、空調、パワー半導体",
+    "risks": "品質管理、設備投資",
+    "environment": "工場自動化と電力需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "6506.T",
+    "name": "安川電機",
+    "business": "産業ロボット・モーター",
+    "brands": "MOTOMAN、インバータ",
+    "risks": "中国景気、設備投資",
+    "environment": "工場自動化とロボット需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "6954.T",
+    "name": "ファナック",
+    "business": "FA・産業ロボット",
+    "brands": "CNC、ロボット、ROBOMACHINE",
+    "risks": "中国景気、設備投資",
+    "environment": "工場自動化と工作機械需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "6861.T",
+    "name": "キーエンス",
+    "business": "FAセンサー・計測",
+    "brands": "画像センサー、測定器、PLC",
+    "risks": "設備投資、競争",
+    "environment": "製造業の自動化投資",
+    "market": "JP"
+  },
+  {
+    "ticker": "6367.T",
+    "name": "ダイキン工業",
+    "business": "空調機器",
+    "brands": "ダイキン、うるさらX",
+    "risks": "為替、原材料",
+    "environment": "世界の空調需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "7751.T",
+    "name": "キヤノン",
+    "business": "精密機器",
+    "brands": "EOS、複合機、医療機器",
+    "risks": "印刷需要、為替",
+    "environment": "カメラと商業印刷需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "6753.T",
+    "name": "シャープ",
+    "business": "家電・電子機器",
+    "brands": "AQUOS、プラズマクラスター",
+    "risks": "財務、競争",
+    "environment": "家電需要と構造改革",
+    "market": "JP"
+  },
+  {
+    "ticker": "6971.T",
+    "name": "京セラ",
+    "business": "電子部品・機器",
+    "brands": "セラミック部品、通信機器",
+    "risks": "設備投資、収益性",
+    "environment": "半導体部品と産業機器需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "6762.T",
+    "name": "TDK",
+    "business": "電子部品",
+    "brands": "積層セラミック部品、電池",
+    "risks": "スマホ需要、競争",
+    "environment": "スマホ・車載電子部品",
+    "market": "JP"
+  },
+  {
+    "ticker": "6981.T",
+    "name": "村田製作所",
+    "business": "電子部品",
+    "brands": "MLCC、通信モジュール",
+    "risks": "スマホ需要、競争",
+    "environment": "AIサーバー・車載部品需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "5802.T",
+    "name": "住友電気工業",
+    "business": "電線・光通信部品",
+    "brands": "光ファイバー、ワイヤーハーネス",
+    "risks": "銅価格、設備投資",
+    "environment": "データセンターと電力網投資",
+    "market": "JP"
+  },
+  {
+    "ticker": "5801.T",
+    "name": "古河電気工業",
+    "business": "電線・光通信部品",
+    "brands": "光ファイバー、電力ケーブル",
+    "risks": "銅価格、設備投資",
+    "environment": "通信・電力インフラ投資",
+    "market": "JP"
+  },
+  {
+    "ticker": "5805.T",
+    "name": "SWCC",
+    "business": "電線・電力インフラ",
+    "brands": "電力ケーブル、接続部材",
+    "risks": "銅価格、設備投資",
+    "environment": "電力網更新需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "6301.T",
+    "name": "小松製作所",
+    "business": "建設・鉱山機械",
+    "brands": "KOMATSU、建設機械",
+    "risks": "中国景気、資源市況",
+    "environment": "鉱山投資とインフラ投資",
+    "market": "JP"
+  },
+  {
+    "ticker": "6305.T",
+    "name": "日立建機",
+    "business": "建設機械",
+    "brands": "油圧ショベル、鉱山機械",
+    "risks": "建設市況、為替",
+    "environment": "建設・鉱山設備投資",
+    "market": "JP"
+  },
+  {
+    "ticker": "7011.T",
+    "name": "三菱重工業",
+    "business": "重工業・防衛",
+    "brands": "発電設備、防衛機器、航空機",
+    "risks": "大型案件、原価上昇",
+    "environment": "防衛予算と発電需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "7012.T",
+    "name": "川崎重工業",
+    "business": "重工業・輸送機器",
+    "brands": "航空機、鉄道車両、二輪車",
+    "risks": "大型案件、為替",
+    "environment": "防衛・航空宇宙需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "7013.T",
+    "name": "IHI",
+    "business": "重工業・航空エンジン",
+    "brands": "航空エンジン、防衛機器",
+    "risks": "品質問題、設備投資",
+    "environment": "航空需要と防衛予算",
+    "market": "JP"
+  },
+  {
+    "ticker": "9101.T",
+    "name": "日本郵船",
+    "business": "海運",
+    "brands": "コンテナ船、物流、LNG船",
+    "risks": "運賃市況、燃料費",
+    "environment": "世界貿易と海運運賃",
+    "market": "JP"
+  },
+  {
+    "ticker": "9104.T",
+    "name": "商船三井",
+    "business": "海運",
+    "brands": "LNG船、コンテナ船、物流",
+    "risks": "運賃市況、燃料費",
+    "environment": "海運運賃とエネルギー輸送",
+    "market": "JP"
+  },
+  {
+    "ticker": "9107.T",
+    "name": "川崎汽船",
+    "business": "海運",
+    "brands": "コンテナ船、自動車船",
+    "risks": "運賃市況、燃料費",
+    "environment": "世界貿易と輸送需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "5020.T",
+    "name": "ENEOSホールディングス",
+    "business": "石油・エネルギー",
+    "brands": "ENEOS、石油精製、素材",
+    "risks": "原油価格、脱炭素",
+    "environment": "石油マージンと資源価格",
+    "market": "JP"
+  },
+  {
+    "ticker": "1605.T",
+    "name": "INPEX",
+    "business": "石油・天然ガス",
+    "brands": "原油・天然ガス開発",
+    "risks": "資源価格、地政学",
+    "environment": "原油・天然ガス市況",
+    "market": "JP"
+  },
+  {
+    "ticker": "8058.T",
+    "name": "三菱商事",
+    "business": "総合商社",
+    "brands": "資源、食品、産業インフラ",
+    "risks": "資源価格、為替",
+    "environment": "資源・非資源投資",
+    "market": "JP"
+  },
+  {
+    "ticker": "8001.T",
+    "name": "伊藤忠商事",
+    "business": "総合商社",
+    "brands": "ファミリーマート、繊維、食品",
+    "risks": "消費、為替",
+    "environment": "非資源事業と小売需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "8031.T",
+    "name": "三井物産",
+    "business": "総合商社",
+    "brands": "エネルギー、金属、食品",
+    "risks": "資源価格、為替",
+    "environment": "資源とインフラ投資",
+    "market": "JP"
+  },
+  {
+    "ticker": "4502.T",
+    "name": "武田薬品工業",
+    "business": "製薬",
+    "brands": "エンティビオ、タケキャブ",
+    "risks": "特許切れ、負債",
+    "environment": "新薬販売と研究開発",
+    "market": "JP"
+  },
+  {
+    "ticker": "4503.T",
+    "name": "アステラス製薬",
+    "business": "製薬",
+    "brands": "イクスタンジ、パドセブ",
+    "risks": "特許切れ、研究開発",
+    "environment": "新薬パイプライン",
+    "market": "JP"
+  },
+  {
+    "ticker": "4523.T",
+    "name": "エーザイ",
+    "business": "製薬",
+    "brands": "レケンビ、レンビマ",
+    "risks": "臨床試験、薬価",
+    "environment": "アルツハイマー病治療薬の普及",
+    "market": "JP"
+  },
+  {
+    "ticker": "4568.T",
+    "name": "第一三共",
+    "business": "製薬",
+    "brands": "エンハーツ、ダトロウェイ",
+    "risks": "臨床試験、薬価",
+    "environment": "ADC抗がん剤の成長",
+    "market": "JP"
+  },
+  {
+    "ticker": "4519.T",
+    "name": "中外製薬",
+    "business": "製薬",
+    "brands": "ヘムライブラ、アクテムラ",
+    "risks": "新薬開発、薬価",
+    "environment": "抗体医薬品需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "6869.T",
+    "name": "シスメックス",
+    "business": "医療検査機器",
+    "brands": "XNシリーズ、検査試薬",
+    "risks": "中国需要、競争",
+    "environment": "検査装置と試薬販売",
+    "market": "JP"
+  },
+  {
+    "ticker": "7733.T",
+    "name": "オリンパス",
+    "business": "医療機器",
+    "brands": "EVIS X1、内視鏡",
+    "risks": "品質管理、規制",
+    "environment": "医療用内視鏡需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "4543.T",
+    "name": "テルモ",
+    "business": "医療機器",
+    "brands": "カテーテル、血液管理機器",
+    "risks": "品質管理、規制",
+    "environment": "医療機器と海外需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "4452.T",
+    "name": "花王",
+    "business": "日用品・化学",
+    "brands": "アタック、ビオレ、キュレル",
+    "risks": "原材料、中国需要",
+    "environment": "日用品と化粧品需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "4911.T",
+    "name": "資生堂",
+    "business": "化粧品",
+    "brands": "SHISEIDO、クレ・ド・ポー ボーテ",
+    "risks": "中国需要、利益率",
+    "environment": "高級化粧品需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "4922.T",
+    "name": "コーセーホールディングス",
+    "business": "化粧品",
+    "brands": "DECORTÉ、雪肌精、ADDICTION",
+    "risks": "中国需要、利益率",
+    "environment": "高級化粧品と免税需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "8113.T",
+    "name": "ユニ・チャーム",
+    "business": "衛生用品",
+    "brands": "ムーニー、ソフィ、ライフリー",
+    "risks": "出生率、原材料",
+    "environment": "衛生用品とアジア需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "2267.T",
+    "name": "ヤクルト本社",
+    "business": "食品・乳酸菌飲料",
+    "brands": "ヤクルト、Yakult1000、ジョア",
+    "risks": "中国需要、原材料",
+    "environment": "乳酸菌飲料と海外販売",
+    "market": "JP"
+  },
+  {
+    "ticker": "2801.T",
+    "name": "キッコーマン",
+    "business": "食品・調味料",
+    "brands": "キッコーマンしょうゆ、デルモンテ",
+    "risks": "為替、原材料",
+    "environment": "海外しょうゆ販売",
+    "market": "JP"
+  },
+  {
+    "ticker": "2802.T",
+    "name": "味の素",
+    "business": "食品・電子材料",
+    "brands": "味の素、ほんだし、ABF",
+    "risks": "原材料、為替",
+    "environment": "食品と半導体材料需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "2502.T",
+    "name": "アサヒグループホールディングス",
+    "business": "飲料・食品",
+    "brands": "アサヒスーパードライ、カルピス",
+    "risks": "原材料、消費",
+    "environment": "国内外の飲料需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "2503.T",
+    "name": "キリンホールディングス",
+    "business": "飲料・医薬",
+    "brands": "キリン一番搾り、午後の紅茶",
+    "risks": "原材料、消費",
+    "environment": "飲料とヘルスサイエンス",
+    "market": "JP"
+  },
+  {
+    "ticker": "2914.T",
+    "name": "日本たばこ産業",
+    "business": "たばこ・食品",
+    "brands": "MEVIUS、Winston",
+    "risks": "規制、為替",
+    "environment": "海外たばこ事業",
+    "market": "JP"
+  },
+  {
+    "ticker": "1928.T",
+    "name": "積水ハウス",
+    "business": "住宅建設",
+    "brands": "積水ハウス、シャーメゾン",
+    "risks": "住宅金利、資材費",
+    "environment": "国内外住宅需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "1802.T",
+    "name": "大林組",
+    "business": "ゼネコン",
+    "brands": "建築、土木、都市開発",
+    "risks": "人件費、資材費",
+    "environment": "国内インフラ投資",
+    "market": "JP"
+  },
+  {
+    "ticker": "1812.T",
+    "name": "鹿島建設",
+    "business": "ゼネコン",
+    "brands": "建築、土木、不動産開発",
+    "risks": "資材費、人件費",
+    "environment": "都市再開発と公共投資",
+    "market": "JP"
+  },
+  {
+    "ticker": "9201.T",
+    "name": "日本航空",
+    "business": "航空",
+    "brands": "JAL、ZIPAIR",
+    "risks": "燃料費、為替",
+    "environment": "旅客需要と訪日観光",
+    "market": "JP"
+  },
+  {
+    "ticker": "9202.T",
+    "name": "ANAホールディングス",
+    "business": "航空",
+    "brands": "ANA、Peach",
+    "risks": "燃料費、為替",
+    "environment": "旅客需要と国際線",
+    "market": "JP"
+  },
+  {
+    "ticker": "4689.T",
+    "name": "LINEヤフー",
+    "business": "インターネットサービス",
+    "brands": "LINE、Yahoo! JAPAN、PayPay関連",
+    "risks": "広告市況、競争",
+    "environment": "広告とEC需要",
+    "market": "JP"
+  },
+  {
+    "ticker": "4755.T",
+    "name": "楽天グループ",
+    "business": "EC・金融・通信",
+    "brands": "楽天市場、楽天カード、楽天モバイル",
+    "risks": "負債、通信投資",
+    "environment": "モバイル事業の収益改善",
+    "market": "JP"
+  },
+  {
+    "ticker": "2413.T",
+    "name": "エムスリー",
+    "business": "医療IT",
+    "brands": "m3.com、医師向け情報サービス",
+    "risks": "医薬品広告、競争",
+    "environment": "医療DXと医師向けサービス",
+    "market": "JP"
+  },
+  {
+    "ticker": "3064.T",
+    "name": "MonotaRO",
+    "business": "工場向けEC",
+    "brands": "モノタロウ、工場用品通販",
+    "risks": "物流費、競争",
+    "environment": "企業の間接材調達",
+    "market": "JP"
+  },
+  {
+    "ticker": "AAPL",
+    "name": "Apple",
+    "business": "スマートフォン・PCメーカー",
+    "brands": "iPhone、Mac、App Store",
+    "risks": "中国需要、規制",
+    "environment": "端末買い替えとサービス収益",
+    "market": "US"
+  },
+  {
+    "ticker": "MSFT",
+    "name": "Microsoft",
+    "business": "クラウド・ソフトウェア",
+    "brands": "Azure、Microsoft 365、Copilot",
+    "risks": "AI投資、競争",
+    "environment": "クラウドと生成AI需要",
+    "market": "US"
+  },
+  {
+    "ticker": "NVDA",
+    "name": "NVIDIA",
+    "business": "半導体設計",
+    "brands": "GPU、CUDA、DGX",
+    "risks": "輸出規制、競争",
+    "environment": "AI計算需要とデータセンター投資",
+    "market": "US"
+  },
+  {
+    "ticker": "GOOGL",
+    "name": "Alphabet",
+    "business": "検索・広告・クラウド",
+    "brands": "Google検索、YouTube、Google Cloud",
+    "risks": "規制、AI競争",
+    "environment": "検索広告とクラウド需要",
+    "market": "US"
+  },
+  {
+    "ticker": "AMZN",
+    "name": "Amazon",
+    "business": "EC・クラウド",
+    "brands": "Amazon、AWS、Prime",
+    "risks": "設備投資、競争",
+    "environment": "クラウドとEC需要",
+    "market": "US"
+  },
+  {
+    "ticker": "META",
+    "name": "Meta Platforms",
+    "business": "SNS・広告",
+    "brands": "Facebook、Instagram、WhatsApp",
+    "risks": "規制、AI投資",
+    "environment": "広告市場とAI機能",
+    "market": "US"
+  },
+  {
+    "ticker": "TSLA",
+    "name": "Tesla",
+    "business": "電気自動車・エネルギー",
+    "brands": "Model 3、Model Y、Powerwall",
+    "risks": "EV競争、利益率",
+    "environment": "EV需要と自動運転開発",
+    "market": "US"
+  },
+  {
+    "ticker": "AVGO",
+    "name": "Broadcom",
+    "business": "半導体・インフラソフト",
+    "brands": "ネットワーク半導体、VMware",
+    "risks": "顧客集中、負債",
+    "environment": "AIネットワーク需要",
+    "market": "US"
+  },
+  {
+    "ticker": "AMD",
+    "name": "Advanced Micro Devices",
+    "business": "半導体",
+    "brands": "Ryzen、EPYC、Instinct",
+    "risks": "競争、半導体市況",
+    "environment": "AI GPUとサーバー需要",
+    "market": "US"
+  },
+  {
+    "ticker": "INTC",
+    "name": "Intel",
+    "business": "半導体メーカー",
+    "brands": "Core、Xeon、Intel Foundry",
+    "risks": "設備投資、競争",
+    "environment": "半導体製造再建",
+    "market": "US"
+  },
+  {
+    "ticker": "MU",
+    "name": "Micron Technology",
+    "business": "メモリ半導体",
+    "brands": "DRAM、HBM、NAND",
+    "risks": "メモリ市況、設備投資",
+    "environment": "AI向けメモリ需要",
+    "market": "US"
+  },
+  {
+    "ticker": "QCOM",
+    "name": "Qualcomm",
+    "business": "通信半導体",
+    "brands": "Snapdragon、モデム",
+    "risks": "スマホ需要、特許",
+    "environment": "スマホとエッジAI",
+    "market": "US"
+  },
+  {
+    "ticker": "ARM",
+    "name": "Arm Holdings",
+    "business": "半導体IP",
+    "brands": "Arm CPU IP、Neoverse",
+    "risks": "ライセンス、競争",
+    "environment": "サーバーとスマホの設計需要",
+    "market": "US"
+  },
+  {
+    "ticker": "TXN",
+    "name": "Texas Instruments",
+    "business": "アナログ半導体",
+    "brands": "アナログIC、組込みプロセッサ",
+    "risks": "産業需要、設備投資",
+    "environment": "産業機器と車載半導体",
+    "market": "US"
+  },
+  {
+    "ticker": "ADI",
+    "name": "Analog Devices",
+    "business": "アナログ半導体",
+    "brands": "データコンバータ、電源管理",
+    "risks": "産業需要、競争",
+    "environment": "工場・車載の電子化",
+    "market": "US"
+  },
+  {
+    "ticker": "AMAT",
+    "name": "Applied Materials",
+    "business": "半導体製造装置",
+    "brands": "成膜装置、検査装置",
+    "risks": "輸出規制、設備投資",
+    "environment": "半導体設備投資",
+    "market": "US"
+  },
+  {
+    "ticker": "LRCX",
+    "name": "Lam Research",
+    "business": "半導体製造装置",
+    "brands": "エッチング装置、成膜装置",
+    "risks": "輸出規制、設備投資",
+    "environment": "半導体製造能力増強",
+    "market": "US"
+  },
+  {
+    "ticker": "KLAC",
+    "name": "KLA",
+    "business": "半導体検査装置",
+    "brands": "検査装置、計測装置",
+    "risks": "設備投資、顧客集中",
+    "environment": "半導体歩留まり改善",
+    "market": "US"
+  },
+  {
+    "ticker": "ASML",
+    "name": "ASML Holding",
+    "business": "露光装置",
+    "brands": "EUV、DUV露光装置",
+    "risks": "輸出規制、顧客集中",
+    "environment": "先端半導体投資",
+    "market": "US"
+  },
+  {
+    "ticker": "ORCL",
+    "name": "Oracle",
+    "business": "企業向けソフト・クラウド",
+    "brands": "Oracle Database、OCI、NetSuite",
+    "risks": "設備投資、負債",
+    "environment": "AIクラウドとデータベース",
+    "market": "US"
+  },
+  {
+    "ticker": "CRM",
+    "name": "Salesforce",
+    "business": "企業向けCRM",
+    "brands": "Sales Cloud、Service Cloud、Slack",
+    "risks": "競争、成長鈍化",
+    "environment": "企業のCRM投資",
+    "market": "US"
+  },
+  {
+    "ticker": "ADBE",
+    "name": "Adobe",
+    "business": "クリエイティブソフト",
+    "brands": "Photoshop、Acrobat、Firefly",
+    "risks": "生成AI競争、解約",
+    "environment": "デザインソフトとAI需要",
+    "market": "US"
+  },
+  {
+    "ticker": "NOW",
+    "name": "ServiceNow",
+    "business": "企業向け業務ソフト",
+    "brands": "Now Platform、ITSM",
+    "risks": "高い評価額、競争",
+    "environment": "企業の業務自動化",
+    "market": "US"
+  },
+  {
+    "ticker": "SNOW",
+    "name": "Snowflake",
+    "business": "クラウドデータ基盤",
+    "brands": "Snowflake Data Cloud",
+    "risks": "競争、クラウド費用",
+    "environment": "データ分析とAI活用",
+    "market": "US"
+  },
+  {
+    "ticker": "PLTR",
+    "name": "Palantir Technologies",
+    "business": "データ分析ソフト",
+    "brands": "Gotham、Foundry、AIP",
+    "risks": "評価額、政府案件",
+    "environment": "政府・企業AI導入",
+    "market": "US"
+  },
+  {
+    "ticker": "IBM",
+    "name": "IBM",
+    "business": "企業向けIT",
+    "brands": "watsonx、Red Hat、メインフレーム",
+    "risks": "成長鈍化、競争",
+    "environment": "企業AIとハイブリッドクラウド",
+    "market": "US"
+  },
+  {
+    "ticker": "CSCO",
+    "name": "Cisco Systems",
+    "business": "ネットワーク機器",
+    "brands": "Catalyst、Webex、Splunk",
+    "risks": "IT投資、競争",
+    "environment": "企業ネットワークとセキュリティ",
+    "market": "US"
+  },
+  {
+    "ticker": "PANW",
+    "name": "Palo Alto Networks",
+    "business": "サイバーセキュリティ",
+    "brands": "Prisma、Cortex、NGFW",
+    "risks": "競争、買収統合",
+    "environment": "クラウドセキュリティ需要",
+    "market": "US"
+  },

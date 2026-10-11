@@ -1,0 +1,1 @@
+2026-10-11.md is a manually sourced preview, not a successful automated yfinance pipeline run. history.json intentionally unchanged.
