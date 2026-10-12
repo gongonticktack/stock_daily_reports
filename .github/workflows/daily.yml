@@ -11,9 +11,11 @@ on:
       - 'docs/theme.css'
       - 'requirements.txt'
   schedule:
-    # 22:00 UTC = 07:00 JST the following day (JST has no DST).
-    # GitHub Actions schedules may be delayed; exact 07:00 delivery is NOT guaranteed.
-    - cron: '0 22 * * *'
+    # 21:17/21:47 UTC = 06:17/06:47 JST the following day.
+    # The second run retries generation/publication if the first run fails.
+    # GitHub may delay schedules; publication by 07:00 is not guaranteed.
+    - cron: '17 21 * * *'
+    - cron: '47 21 * * *'
   workflow_dispatch:
 
 permissions:
@@ -23,7 +25,7 @@ permissions:
 
 concurrency:
   group: stock-report
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   publish:
@@ -43,14 +45,37 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Test site renderer
         run: python -m unittest discover -s tests -v
-      - name: Generate report
+      - name: Check today's report
+        id: report
         if: github.event_name != 'push'
+        run: |
+          report_date=$(TZ=Asia/Tokyo date +%F)
+          echo "date=$report_date" >> "$GITHUB_OUTPUT"
+          if [ -s "reports/$report_date.md" ] && head -n 1 "reports/$report_date.md" | grep -Fq "$report_date"; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Generate report
+        if: github.event_name != 'push' && (github.event_name == 'workflow_dispatch' || steps.report.outputs.exists != 'true')
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: gpt-4.1-mini
+          REPORT_DATE: ${{ steps.report.outputs.date }}
         run: python scripts/daily_report.py
       - name: Build bilingual STOCK NEWS site
         run: python scripts/build_site.py
+      - name: Verify today's report and website
+        if: github.event_name != 'push'
+        env:
+          REPORT_DATE: ${{ steps.report.outputs.date }}
+        run: |
+          test -s "reports/$REPORT_DATE.md"
+          head -n 1 "reports/$REPORT_DATE.md" | grep -Fq "$REPORT_DATE"
+          test -s "docs/reports/$REPORT_DATE.html"
+          test -s "docs/summary/$REPORT_DATE.html"
+          grep -Fq "$REPORT_DATE" docs/index.html
+          echo "Verified report and website for $REPORT_DATE (JST)." >> "$GITHUB_STEP_SUMMARY"
       - name: Save reports and selection history to repository
         run: |
           git config user.name 'github-actions[bot]'
@@ -71,3 +96,9 @@ jobs:
       - name: Publish website
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Explain failed update
+        if: failure()
+        run: |
+          echo "::error::Daily stock update failed. Check the failed step; the next scheduled run can retry."
+          echo "### Daily stock update failed" >> "$GITHUB_STEP_SUMMARY"
+          echo "Check the failed step above. Backup schedule: 06:47 JST. Manual retry: Run workflow." >> "$GITHUB_STEP_SUMMARY"
