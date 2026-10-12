@@ -96,6 +96,31 @@ class SiteTests(unittest.TestCase):
                 site.main()
                 self.assertEqual(old, (root / 'docs/summary/2026-10-11.html').read_text(encoding='utf-8'))
 
+
+    def test_summary_range_indicator_uses_archived_numbers_and_handles_missing_data(self):
+        for position in (0.0, 8.4, 100.0):
+            source = ('## 日本株｜過去5年安値圏候補\n\n### 第一三共｜4568.T\n\n'
+                      '**直近終値：2,623.0円**\n\n'
+                      f'**5年高値：6,257.0円／5年安値：2,288.0円／現在のレンジ位置：{position:.1f}%**\n')
+            card = site.extract_market_cards(source)[0][2][0]
+            self.assertEqual(card['price_range']['position'], position)
+            soup = BeautifulSoup(site.market_digest(source, '2026-10-13',
+                                 site.Translator(cache={}, limit=0)), 'html.parser')
+            self.assertEqual(soup.select_one('.range-marker')['style'], f'left:{position:.1f}%')
+            self.assertIn('2,288.0円', soup.select_one('.range-endpoints').get_text())
+            self.assertIn('6,257.0円', soup.select_one('.range-endpoints').get_text())
+            self.assertIn(f'{position:.1f}%', soup.select_one('[role="img"]')['aria-label'])
+            self.assertIn('Five-year low', soup.get_text())
+        for bad in ('', '**5年高値：100円／5年安値：100円／現在のレンジ位置：8.4%**',
+                    '**5年高値：200円／5年安値：100円／現在のレンジ位置：101%**'):
+            source = '## 日本株｜安値圏\n\n### 候補｜ABC\n\n' + bad
+            rendered = site.market_digest(source, '2026-10-13', site.Translator(cache={}, limit=0))
+            self.assertIn('データ未取得', rendered)
+            self.assertNotIn('range-marker', rendered)
+        movers = '## 日本株｜注目候補\n\n### 候補｜ABC\n'
+        self.assertNotIn('five-year-range', site.market_digest(movers, '2026-10-13',
+                                                             site.Translator(cache={}, limit=0)))
+
     def test_bilingual_toggle_and_language_memory(self):
         page = site.shell('STOCK NEWS', '<p>News</p>')
         self.assertIn('data-set-lang="ja"', page)

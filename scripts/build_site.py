@@ -282,9 +282,20 @@ def extract_market_cards(report):
             price = re.search(r'\*\*直近終値：([^\n*]+)\*\*', detail)
             business = re.search(r'\*\*事業概要（登録情報）：\*\*\s*([^\n]+)', detail)
             reason = re.search(r'\*\*事実・注目理由：\*\*\s*([^\n]+)', detail)
+            range_match = re.search(r'5年高値：([^／\n*]+)／5年安値：([^／\n*]+)／現在のレンジ位置：([0-9]+(?:\.[0-9]+)?)%', detail)
+            price_range = None
+            if range_match:
+                high, low, position = range_match.groups()
+                number = lambda value: float(re.search(r'[0-9][0-9,]*(?:\.[0-9]+)?', value).group().replace(',', ''))
+                try:
+                    if number(high) > number(low) and 0 <= float(position) <= 100:
+                        price_range = {'high': high.strip(), 'low': low.strip(), 'position': float(position)}
+                except (AttributeError, ValueError):
+                    pass
             cards.append({
                 'name': name.strip(), 'ticker': ticker.strip(),
                 'anchor': anchor,
+                'price_range': price_range,
                 'price': price.group(1).strip() if price else '',
                 'business': business.group(1).strip() if business else '',
                 'reason': reason.group(1).strip() if reason else '',
@@ -292,6 +303,31 @@ def extract_market_cards(report):
         if cards:
             groups.append((market, label, cards))
     return groups
+
+
+
+def range_diagram(price_range):
+    """A price range indicator, not a historical time-series chart."""
+    if not price_range:
+        return ('<div class="range-unavailable">' +
+                bilingual('5年レンジ：データ未取得', 'Five-year range: data unavailable') + '</div>')
+    position = price_range['position']
+    def price(value):
+        return bilingual(value, value.replace('円', ' JPY').replace('ドル', ' USD'))
+    return ('<figure class="five-year-range"><figcaption>' +
+            bilingual('5年レンジの現在位置', 'Position in five-year range') +
+            '<strong>' + bilingual(f'安値から {position:.1f}%', f'{position:.1f}% from the low') +
+            '</strong></figcaption><div class="range-current">' +
+            bilingual('● 現在の終値', '● Latest close') +
+            '</div><div class="range-track" role="img" aria-label="' +
+            esc(f'安値 0%、高値 100%、現在 {position:.1f}% / Low 0%, high 100%, current {position:.1f}%') +
+            '"><span class="range-fill" style="width:' + f'{position:.1f}' +
+            '%"></span><span class="range-marker" style="left:' + f'{position:.1f}' +
+            '%"></span></div><div class="range-endpoints"><div>' +
+            bilingual('5年安値 · 0%', 'Five-year low · 0%') + '<strong>' +
+            price(price_range['low']) + '</strong></div><div>' +
+            bilingual('5年高値 · 100%', 'Five-year high · 100%') + '<strong>' +
+            price(price_range['high']) + '</strong></div></div></figure>')
 
 
 def market_digest(report, day, translator, *, base=''):
@@ -321,6 +357,7 @@ def market_digest(report, day, translator, *, base=''):
                     '<span>' + esc(card['ticker']) + '</span></div>'
                     '<h2>' + bilingual(card['name'], name_en) + '</h2>'
                     '<p class="stock-price">' + esc(card['price']) + '</p>'
+                    + (range_diagram(card['price_range']) if low else '') +
                     '<p>' + bilingual(card['business'], business_en) + '</p>'
                     '<p class="why"><strong>' + bilingual('注目理由：', 'Why it matters: ') +
                     '</strong>' + bilingual(card['reason'], reason_en) + '</p>'
