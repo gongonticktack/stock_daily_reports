@@ -45,6 +45,8 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Test site renderer
         run: python -m unittest discover -s tests -v
+      - name: Reconstruct requested historical editions
+        run: python scripts/backfill.py
       - name: Check today's report
         id: report
         if: github.event_name != 'push'

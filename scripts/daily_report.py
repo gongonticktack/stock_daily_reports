@@ -44,7 +44,7 @@ def escape(s):
     return html.escape(str(s), quote=False).replace('[', r'\[').replace(']', r'\]')
 
 
-def get_history(tickers: list[str]) -> dict[str, pd.DataFrame]:
+def get_history(tickers: list[str], *, start=None, end=None) -> dict[str, pd.DataFrame]:
     """Yahoo daily OHLC; split-adjusted historical OHLC, NOT dividend-adjusted."""
     result = {}
     for i in range(0, len(tickers), 12):
@@ -52,7 +52,7 @@ def get_history(tickers: list[str]) -> dict[str, pd.DataFrame]:
         for attempt in range(3):
             try:
                 raw = yf.download(
-                    tickers=chunk, period='5y', interval='1d',
+                    tickers=chunk, **({'start': start, 'end': end} if start else {'period': '5y'}), interval='1d',
                     auto_adjust=False, actions=False, group_by='ticker',
                     progress=False, threads=False, timeout=35,
                 )
@@ -192,7 +192,7 @@ def describe_financials(f, market):
     return '、'.join(out) if out else '数値未取得'
 
 
-def choose(universe, stats, recent, today):
+def choose(universe, stats, recent, today, *, historical=False):
     """No forced repeats: fewer than three is preferable to fabricated new catalysts."""
     selected = {}
     for market in ('JP', 'US'):
@@ -210,6 +210,10 @@ def choose(universe, stats, recent, today):
             mode = '直近営業日の変動率（監視銘柄内）'
         used = {x['ticker'] for x in movers}
         pool = sorted([x for x in available if x['ticker'] not in used and stats[x['ticker']]['bar_count'] >= 1000], key=lambda x: stats[x['ticker']]['position5'])
+        if historical:
+            # Do not use today's fundamentals as if they were known on a past date.
+            selected[market] = {'movers': movers, 'lows': pool[:3], 'mode': mode}
+            continue
         # Yahoo fundamentals are costly and rate-limited. Check a short shortlist.
         scored = []
         for x in pool[:14]:
