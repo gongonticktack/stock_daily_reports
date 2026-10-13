@@ -1,3 +1,5 @@
+🌐 **Webアプリ：[STOCK NEWSを開く](https://gongonticktack.github.io/stock_daily_reports/)**
+
 # STOCK NEWS — 日本株・米国株の日刊レポート
 
 ## 概要
