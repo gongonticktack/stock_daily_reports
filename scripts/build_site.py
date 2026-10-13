@@ -199,10 +199,7 @@ def shell(title, content, *, in_report=False):
         '<button type="button" data-set-lang="en" aria-pressed="false" lang="en">EN</button>'
         '</div></div></header>'
         '<main class="wrap">' + content +
-        '<footer>' + bilingual(
-            '株価・ニュースの取得日時をご確認ください。情報提供を目的とし、投資助言ではありません。',
-            'Check the source dates for prices and news. For information only; not investment advice.'
-        ) + '<div><a class="sister-site" href="https://gongonticktack.github.io/it_news/">' +
+        '<footer><div><a class="sister-site" href="https://gongonticktack.github.io/it_news/">' +
         bilingual('IT NEWS を読む ↗', 'Visit IT NEWS ↗') +
         '</a></div></footer></main>' + lang_script() + '</body></html>'
     )
@@ -229,6 +226,15 @@ def date_navigation(day, days, *, base='', folder='summary/'):
 def render_report(markdown_text, day, translator, days=None):
     ja_html = markdown.markdown(markdown_text, extensions=['tables', 'fenced_code'])
     soup = BeautifulSoup(ja_html, 'html.parser')
+    editorial_prefixes = ('過去分の再構成レポート', '株価はデータ提供元で確認できた',
+                          '監視対象銘柄から選定しており', '価格レンジ位置は', '注記：',
+                          'データの注意：', 'ニュースの注意：', '投資助言ではありません。')
+    for node in list(soup.find_all(['blockquote', 'p'])):
+        if node.parent is not None and node.get_text().strip().startswith(editorial_prefixes):
+            node.decompose()
+    for separator in list(soup.find_all('hr')):
+        if not any(getattr(node, 'name', None) or str(node).strip() for node in separator.next_siblings):
+            separator.decompose()
     anchors = iter(card['anchor'] for _, _, cards in extract_market_cards(markdown_text)
                    for card in cards)
     market_section = False
