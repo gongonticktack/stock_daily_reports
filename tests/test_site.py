@@ -170,17 +170,28 @@ class SiteTests(unittest.TestCase):
         self.assertIn('商品A、サービスB', mover.select_one('.stock-brands').get_text())
         self.assertIn('注目理由：', mover.select_one('.why').get_text())
         self.assertIn('決算発表で売上増加を公表。', mover.select_one('.why').get_text())
-        self.assertEqual(mover.select_one('.stock-news a')['href'], 'https://example.com/results')
-        self.assertIn('2026-10-15', mover.select_one('.stock-news').get_text())
+        self.assertIsNone(mover.select_one('.stock-news'))
+        self.assertNotIn('https://example.com/results', str(soup))
         self.assertIn('安値の理由：', low.select_one('.why').get_text())
-        self.assertIn('直接要因は確認できていません', low.select_one('.why').get_text())
-        self.assertNotIn('原材料費', low.select_one('.why').get_text())
-        self.assertIn('原材料費', low.select_one('.stock-context').get_text())
-        self.assertIn('10.0%', low.select_one('.stock-selection').get_text())
+        self.assertIn('推測：', low.select_one('.why').get_text())
+        self.assertIn('利益率', low.select_one('.why').get_text())
+        self.assertIsNone(low.select_one('.stock-selection'))
         explicit = source.replace('**主要リスク（登録情報）：** 原材料費',
                                   '**安値の理由：** 業績予想を下方修正。')
         self.assertIn('業績予想を下方修正。', site.market_digest(
             explicit, '2026-10-15', site.Translator(cache={}, limit=0)))
+
+    def test_archived_summary_replaces_price_only_reason_with_business_topic(self):
+        source = ('## 米国株｜注目候補\n\n### Test Co｜TEST\n'
+                  '**事業環境：** データセンター需要\n'
+                  '**主要ブランド・サービス（登録情報）：** TestCloud\n'
+                  '**事実・注目理由：** 前日比+8.0%、週間+10.0%。\n')
+        page = BeautifulSoup(site.market_digest(source, '2026-10-01',
+                             site.Translator(cache={}, limit=0)), 'html.parser')
+        reason = page.select_one('.why').get_text()
+        self.assertIn('データセンター需要', reason)
+        self.assertNotIn('8.0%', reason)
+        self.assertNotIn('10.0%', reason)
 
     def test_numeric_mismatch_rejected(self):
         class BadTranslator:

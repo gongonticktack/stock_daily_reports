@@ -18,6 +18,11 @@ from pathlib import Path
 import markdown
 from bs4 import BeautifulSoup, NavigableString
 
+try:
+    from .stock_reasons import fallback_reasons
+except ImportError:
+    from stock_reasons import fallback_reasons
+
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / 'docs'
 CACHE_PATH = ROOT / 'data' / 'translations_en.json'
@@ -298,7 +303,7 @@ def extract_market_cards(report):
             if news_block:
                 for headline, url, published in re.findall(
                         r'^- \[([^\n]+)\]\((https?://[^\s)]+)\)([^\n]*)', news_block.group(1), re.M):
-                    news.append({'title': headline, 'url': url, 'published': published.strip()})
+                    news.append({'title': headline, 'url': url, 'published': published.strip('（） ')})
             range_match = re.search(r'5年高値：([^／\n*]+)／5年安値：([^／\n*]+)／現在のレンジ位置：([0-9]+(?:\.[0-9]+)?)%', detail)
             price_range = None
             if range_match:
@@ -365,46 +370,24 @@ def market_digest(report, day, translator, *, base=''):
         day + ' の注目銘柄', 'Stocks to Watch — ' + day) + '</h2></div>'
     for market, label, cards in groups:
         low = '安値圏' in label
-        group_en = ('Five-Year Low Candidates' if low else 'Market Movers / Stocks to Watch')
+        group_en = ('Five-Year Low Candidates' if low else 'Company Topics / Stocks to Watch')
         out += ('<div class="section-title"><h2>' +
-                bilingual(market + '｜' + label, ('Japan' if market == '日本株' else 'US') +
+                bilingual(market + '｜' + (label if low else '話題の注目銘柄'), ('Japan' if market == '日本株' else 'US') +
                           ' | ' + group_en) + '</h2></div><section class="news stock-home-cards">')
         for number, card in enumerate(cards, 1):
             name_en = translator.translate(card['name'])
             business_en = translator.translate(card['business']) if card['business'] else ''
-            reason = card['low_reason' if low else 'watch_reason']
-            if not reason:
-                reason = ('下落の直接要因は確認できていません。' if low else card['reason'])
-            if not reason:
-                reason = '選定理由の記録がありません。'
+            analysis = fallback_reasons(card, day, card['news'])
+            reason = card['low_reason' if low else 'watch_reason'] or analysis['low_reason' if low else 'watch_reason']
+            # An archive can select relatively cheap candidates without an absolute low.
+            if low and card['price_range'] and card['price_range']['position'] > 35:
+                reason += f" 現在は5年レンジの{card['price_range']['position']:.1f}%で、安値水準とは限りません。"
             reason_en = translator.translate(reason)
             brands = card['brands'] or '商品・サービス情報は未登録です。'
             brands_en = translator.translate(brands)
-            selection_html = ''
-            if low and card['reason']:
-                selection_html = ('<p class="stock-selection"><strong>' +
-                    bilingual('選定理由：', 'Selection basis: ') + '</strong>' +
-                    bilingual(card['reason'], translator.translate(card['reason'])) + '</p>')
-            context = card['risks'] if low else card['environment']
-            context_html = ''
-            if context:
-                context_html = ('<p class="stock-context"><strong>' +
-                    bilingual('確認したいリスク：' if low else '事業環境：',
-                              'Risks to check: ' if low else 'Business context: ') +
-                    '</strong>' + bilingual(context, translator.translate(context)) + '</p>')
-            news_html = ''
-            if card['news']:
-                news_html = '<div class="stock-news"><strong>' + bilingual(
-                    '関連ニュース（値動きとの因果関係は未確認）',
-                    'Related news (price impact unconfirmed)') + '</strong><ul>'
-                for news in card['news']:
-                    news_html += ('<li><a href="' + esc(news['url']) + '">' +
-                                  bilingual(news['title'], translator.translate(news['title'])) +
-                                  '</a><small>' + esc(news['published']) + '</small></li>')
-                news_html += '</ul></div>'
             out += ('<article class="story"><div class="meta">'
                     '<span class="tag">' + ('JP' if market == '日本株' else 'US') +
-                    (' · 5Y LOW' if low else ' · MOVERS') + '</span>'
+                    (' · 5Y LOW' if low else ' · TOPICS') + '</span>'
                     '<span>#' + str(number).zfill(2) + '</span>'
                     '<span>' + esc(card['ticker']) + '</span></div>'
                     '<h2>' + bilingual(card['name'], name_en) + '</h2>'
@@ -415,7 +398,7 @@ def market_digest(report, day, translator, *, base=''):
                     '</strong>' + bilingual(brands, brands_en) + '</p>'
                     '<p class="why"><strong>' + bilingual('安値の理由：' if low else '注目理由：',
                                                             'Why the price is low: ' if low else 'Why watch: ') +
-                    '</strong>' + bilingual(reason, reason_en) + '</p>' + selection_html + context_html + news_html +
+                    '</strong>' + bilingual(reason, reason_en) + '</p>' +
                     '<a class="link" href="' + base + 'reports/' + esc(day) + '.html#' + card['anchor'] + '">' +
                     bilingual('詳しい分析を見る ↗', 'Full analysis ↗') + '</a></article>')
         out += '</section>'

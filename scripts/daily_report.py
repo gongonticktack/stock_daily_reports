@@ -19,6 +19,11 @@ import pandas as pd
 import requests
 import yfinance as yf
 
+try:
+    from .stock_reasons import generate_reasons, research_company
+except ImportError:
+    from stock_reasons import generate_reasons, research_company
+
 ROOT = Path(__file__).resolve().parents[1]
 JST = ZoneInfo('Asia/Tokyo')
 LOG = logging.getLogger('stock-daily')
@@ -141,9 +146,9 @@ def financial_score(f):
     return penalty
 
 
-def news_search(term, days=7, limit=2):
+def news_search(term, days=7, limit=2, keywords=""):
     # News titles are shown as attributed headlines, NOT independently verified events.
-    query = quote(f'"{term}" when:{days}d')
+    query = quote(f'"{term}" {keywords} when:{days}d')
     url = f'https://news.google.com/rss/search?q={query}&hl=ja&gl=JP&ceid=JP:ja'
     try:
         r = requests.get(url, timeout=12, headers={'User-Agent': 'Mozilla/5.0 (stock-report-bot)'})
@@ -283,13 +288,13 @@ def render_report(today, selected, stats, indexes, market_news, ai_summary):
         if not selection['movers']:
             lines += ['取得可能な候補がありませんでした。', '']
         for x in selection['movers']:
-            lines += stock_section(x, stats[x['ticker']], market, low=False)
+            lines += stock_section(dict(x, _report_date=str(today)), stats[x['ticker']], market, low=False)
         if len(selection['movers']) < 3:
             lines += [f"**注記：条件を満たす候補が{len(selection['movers'])}銘柄のため、重複銘柄で補充していません。**", '']
         lines += ['', f'## {flag}｜過去5年安値圏候補 3銘柄', '',
                   '価格レンジ位置は「(現在値−5年安値)÷(5年高値−5年安値)」。取得できた過去5年の日足（少なくとも約4年分）を使用し、配当再投資は含みません。', '']
         for x in selection['lows']:
-            lines += stock_section(x, stats[x['ticker']], market, low=True)
+            lines += stock_section(dict(x, _report_date=str(today)), stats[x['ticker']], market, low=True)
         if len(selection['lows']) < 3:
             lines += [f"**注記：業績・財務データを確認できた候補が{len(selection['lows'])}銘柄のため、未確認銘柄で補充していません。**", '']
     lines += ['', '---', '', '**データの注意：** 株価・5年高安値はYahoo Financeの非公式取得経路を使用します。データ遅延、株式分割調整、欠損、提供元の仕様変更があり得ます。5年高安値は取得できた日足データに限ります。',
@@ -321,7 +326,15 @@ def stock_section(x, m, market, low):
                   (f"{m['weekly_pct']:+.2f}%" if m['weekly_pct'] is not None else '未算出') + '。',
                   f"**事業環境：** {escape(x['environment'])}",
                   '**予想・確認点：** 変動の継続は未確定。次回決算・一次情報を確認。', '']
-    news = news_search(x['name'], days=7, limit=2)
+    news = research_company(x, news_search)
+    analysis = generate_reasons(x, datetime.now(JST).date() if not x.get('_report_date') else x['_report_date'],
+                                news, x.get('financials'))
+    lines += [f"**{'安値の理由' if low else '注目理由'}：** {escape(analysis['low_reason' if low else 'watch_reason'])}", '']
+    if analysis['sources']:
+        lines += ['**理由の参考資料：**']
+        for source in analysis['sources']:
+            lines.append(f"- [{escape(source['title'])}]({source['url']})（{escape(source.get('published', ''))}）")
+        lines.append('')
     if news:
         lines.append('**関連報道の見出し（直接の株価変動要因とは限りません）：**')
         for n in news:

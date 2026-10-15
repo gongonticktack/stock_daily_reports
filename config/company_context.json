@@ -1,0 +1,144 @@
+{
+  "2503.T": {
+    "as_of": "2026-10-14",
+    "sources": [
+      {
+        "title": "キリン：経営成績・キャッシュフロー分析",
+        "url": "https://www.kirinholdings.com/jp/investors/finance/analysis/",
+        "published": "2026年公表・2025年度の分析"
+      }
+    ],
+    "low_reason": "推測：ファンケルなどヘルスサイエンスへの投資が成長につながるまでの時間と資金負担、飲料の原材料高や消費鈍化への警戒が、評価を抑える可能性があります。一方、2025年には事業売却等で収益性が改善しており、業績悪化一辺倒とは見ていません。"
+  },
+  "4452.T": {
+    "as_of": "2026-10-14",
+    "sources": [
+      {
+        "title": "花王：2024年度決算、中国市場と化粧品事業",
+        "url": "https://www.kao.com/emea/en/latest-news/2025/1/6_kao_consolidated_financial_results_2024/",
+        "published": "2025年公表"
+      },
+      {
+        "title": "花王：2025年第1四半期、中国事業は回復軌道",
+        "url": "https://www.kao.com/content/dam/sites/kao/www-kao-com/global/en/investor-relations/pdf/presentations-fy2025-q1-01.pdf",
+        "published": "2025年第1四半期"
+      }
+    ],
+    "low_reason": "推測：2024年度の化粧品事業では中国の成長鈍化・競争激化・出荷抑制が負担になりました。その記憶から中国需要や利益回復の持続性を慎重に見る投資家がいる可能性があります。ただし2025年には中国事業の回復が示されており、過去の悪化が続くとは断定できません。"
+  },
+  "6501.T": {
+    "as_of": "2026-10-14",
+    "sources": [
+      {
+        "title": "日立：2025年度決算と2026年度見通し",
+        "url": "https://www.hitachi.com/content/dam/hitachi/global/en/press/files/2026/04/260427/2025_Anpre.pdf",
+        "published": "2026-04-27"
+      },
+      {
+        "title": "日立：関税の直接・間接影響と見通しの修正",
+        "url": "https://www.hitachi.com/content/dam/hitachi/global/en/press/articles/2025/10/1030/251030_summary.pdf",
+        "published": "2025-10-30"
+      }
+    ],
+    "low_reason": "推測：関税や地政学の不確実性で顧客が設備投資を先送りする懸念、大型案件の採算や為替変動への警戒が、買いを慎重にさせる可能性があります。一方、2025年度は増収増益で過去最高益を計上しており、足元の業績不振を下落理由とはしていません。"
+  },
+  "GS": {
+    "as_of": "2026-10-14",
+    "sources": [
+      {
+        "title": "Goldman Sachs：2025年年次報告、事業と政策・市場変動リスク",
+        "url": "https://www.goldmansachs.com/investor-relations/financials/current/annual-reports/2025-annual-report",
+        "published": "2026年公表"
+      }
+    ],
+    "low_reason": "推測：通商政策や地政学の不透明感でM&A・資金調達案件が延期されれば、投資銀行手数料の収益回復が遅れるという警戒が評価を抑える可能性があります。市場変動はトレーディング収益に追い風にもなるため、単純に悪材料とは限りません。"
+  },
+  "AXP": {
+    "as_of": "2026-10-14",
+    "sources": [
+      {
+        "title": "American Express：2025年第1四半期、消費・信用・関税リスク",
+        "url": "https://ir.americanexpress.com/news/investor-relations-news/investor-relations-news-details/2025/American-Express-Delivers-Strong-First-Quarter-Results-With-Revenue-of-17-0-Billion-up-7-or-8-on-an-FX-Adjusted-Basis/default.aspx",
+        "published": "2025年第1四半期"
+      }
+    ],
+    "low_reason": "推測：関税・物価高や景気減速でカード利用や旅行消費が鈍り、失業増加で貸倒れ費用が増える懸念が評価の重荷になる可能性があります。ただし会社が示すリスクからの仮説であり、高所得顧客の支出が実際に悪化していると断定するものではありません。"
+  },
+  "MS": {
+    "as_of": "2026-10-14",
+    "sources": [
+      {
+        "title": "Morgan Stanley：2025年Form 10-K、事業別・市場リスク",
+        "url": "https://www.morganstanley.com/content/dam/msdotcom/en/about-us-ir/shareholder/10k2025/10k1225.pdf",
+        "published": "2026年公表"
+      }
+    ],
+    "low_reason": "推測：相場下落時の顧客資産減少による運用手数料の伸び悩み、M&A・新規上場案件の延期、規制対応コストへの警戒が評価を抑える可能性があります。市場の不安定化が必ず減益になるわけではなく、売買収益の増加が相殺する場合もあります。"
+  },
+  "9104.T": {
+    "as_of": "2026-10-14",
+    "sources": [
+      {
+        "title": "商船三井：世界初のウインドチャレンジャー搭載LNG船を命名",
+        "url": "https://www.mol.co.jp/pr/2026/26045.html",
+        "published": "2026-09-10"
+      }
+    ],
+    "watch_reason": "2026年9月、硬翼帆式の風力推進装置「ウインドチャレンジャー」を搭載したLNG船を命名。海運の脱炭素化とLNG輸送を組み合わせた取り組みで、長期契約による収益基盤と省燃費技術の展開に注目します。"
+  },
+  "4502.T": {
+    "as_of": "2026-10-14",
+    "sources": [
+      {
+        "title": "武田薬品：2026年株主向けメッセージ、新薬上市と成長投資",
+        "url": "https://www.takeda.com/jp/investors/events/shareholder-letter-2026/",
+        "published": "2026年公表"
+      }
+    ],
+    "watch_reason": "2026年度は新薬候補の上市準備と後期開発への投資が焦点。主力薬の収益維持に加え、新しい成長源の承認・発売に向けた進展が将来の事業構成をどう変えるかに注目します。"
+  },
+  "9433.T": {
+    "as_of": "2026-10-14",
+    "sources": [
+      {
+        "title": "KDDI：LG CNSとアジア太平洋地域での事業拡大へ基本合意",
+        "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1191_4758.html",
+        "published": "2026-10-14"
+      }
+    ],
+    "watch_reason": "2026年10月14日、LG CNSとアジア太平洋地域の事業拡大に向けた基本合意書を締結。通信基盤とITサービスを組み合わせ、海外で法人向け事業を広げられるかが注目点です。"
+  },
+  "BAC": {
+    "as_of": "2026-10-14",
+    "sources": [
+      {
+        "title": "Bank of America：2026年第3四半期決算発表",
+        "url": "https://newsroom.bankofamerica.com/content/newsroom/press-releases/2026/10/bank-of-america-reports-third-quarter-2026-financial-results.html",
+        "published": "2026-10-14"
+      }
+    ],
+    "watch_reason": "2026年10月14日に第3四半期決算を公表。注目するのは株価の変動幅ではなく、金利環境を受けた利息収益、融資需要、信用費用が利益の持続性をどう示すかです。"
+  },
+  "GILD": {
+    "as_of": "2026-10-14",
+    "sources": [
+      {
+        "title": "Gilead：開発中の年1回HIV予防薬のアクセス準備",
+        "url": "https://investors.gilead.com/news/news-details/2026/Gilead-Accelerates-Global-Access-Planning-for-Investigational-Once-Yearly-Lenacapavir-for-HIV-Prevention/default.aspx",
+        "published": "2026-09-16"
+      }
+    ],
+    "watch_reason": "2026年9月、年1回投与のHIV予防薬候補レナカパビルについて、承認を前提にアクセス拡大の準備を進める方針を公表。投与頻度を減らす技術と普及策が新たな成長につながるかが注目点です。"
+  },
+  "MRK": {
+    "as_of": "2026-10-14",
+    "sources": [
+      {
+        "title": "Gilead・Merck：週1回HIV治療候補の第3相主要結果",
+        "url": "https://investors.gilead.com/news/news-details/2026/Gilead-and-Merck-Announce-Positive-Topline-Results-From-Two-Phase-3-Studies-Evaluating-IslatravirLenacapavir-an-Oral-Once-Weekly-HIV-Treatment/default.aspx",
+        "published": "2026-06-08"
+      }
+    ],
+    "watch_reason": "Gileadと共同開発する週1回の経口HIV治療候補で、2026年6月に第3相試験の肯定的な主要結果を公表。既存薬以外の成長源として、承認に向けた進展や製品化の可能性に注目します。"
+  }
+}
