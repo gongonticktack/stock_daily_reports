@@ -287,7 +287,18 @@ def extract_market_cards(report):
                 identity.encode('utf-8')).hexdigest()[:24] + '-' + str(occurrences[identity])
             price = re.search(r'\*\*直近終値：([^\n*]+)\*\*', detail)
             business = re.search(r'\*\*事業概要（登録情報）：\*\*\s*([^\n]+)', detail)
-            reason = re.search(r'\*\*事実・注目理由：\*\*\s*([^\n]+)', detail)
+            def field(label):
+                found = re.search(r'\*\*' + re.escape(label) + r'：\*\*[ \t]*([^\n]+)', detail)
+                return found.group(1).strip() if found else ''
+            reason = field('事実・注目理由')
+            low_reason = field('安値の理由')
+            watch_reason = field('注目理由')
+            news_block = re.search(r'(?ms)^\*\*関連報道[^\n]*\n(.*?)(?=^\*\*|\Z)', detail)
+            news = []
+            if news_block:
+                for headline, url, published in re.findall(
+                        r'^- \[([^\n]+)\]\((https?://[^\s)]+)\)([^\n]*)', news_block.group(1), re.M):
+                    news.append({'title': headline, 'url': url, 'published': published.strip()})
             range_match = re.search(r'5年高値：([^／\n*]+)／5年安値：([^／\n*]+)／現在のレンジ位置：([0-9]+(?:\.[0-9]+)?)%', detail)
             price_range = None
             if range_match:
@@ -304,7 +315,13 @@ def extract_market_cards(report):
                 'price_range': price_range,
                 'price': price.group(1).strip() if price else '',
                 'business': business.group(1).strip() if business else '',
-                'reason': reason.group(1).strip() if reason else '',
+                'brands': field('主要ブランド・サービス（登録情報）'),
+                'reason': reason,
+                'low_reason': low_reason,
+                'watch_reason': watch_reason,
+                'risks': field('主要リスク（登録情報）'),
+                'environment': field('事業環境'),
+                'news': news[:2],
             })
         if cards:
             groups.append((market, label, cards))
@@ -355,7 +372,36 @@ def market_digest(report, day, translator, *, base=''):
         for number, card in enumerate(cards, 1):
             name_en = translator.translate(card['name'])
             business_en = translator.translate(card['business']) if card['business'] else ''
-            reason_en = translator.translate(card['reason']) if card['reason'] else ''
+            reason = card['low_reason' if low else 'watch_reason']
+            if not reason:
+                reason = ('下落の直接要因は確認できていません。' if low else card['reason'])
+            if not reason:
+                reason = '選定理由の記録がありません。'
+            reason_en = translator.translate(reason)
+            brands = card['brands'] or '商品・サービス情報は未登録です。'
+            brands_en = translator.translate(brands)
+            selection_html = ''
+            if low and card['reason']:
+                selection_html = ('<p class="stock-selection"><strong>' +
+                    bilingual('選定理由：', 'Selection basis: ') + '</strong>' +
+                    bilingual(card['reason'], translator.translate(card['reason'])) + '</p>')
+            context = card['risks'] if low else card['environment']
+            context_html = ''
+            if context:
+                context_html = ('<p class="stock-context"><strong>' +
+                    bilingual('確認したいリスク：' if low else '事業環境：',
+                              'Risks to check: ' if low else 'Business context: ') +
+                    '</strong>' + bilingual(context, translator.translate(context)) + '</p>')
+            news_html = ''
+            if card['news']:
+                news_html = '<div class="stock-news"><strong>' + bilingual(
+                    '関連ニュース（値動きとの因果関係は未確認）',
+                    'Related news (price impact unconfirmed)') + '</strong><ul>'
+                for news in card['news']:
+                    news_html += ('<li><a href="' + esc(news['url']) + '">' +
+                                  bilingual(news['title'], translator.translate(news['title'])) +
+                                  '</a><small>' + esc(news['published']) + '</small></li>')
+                news_html += '</ul></div>'
             out += ('<article class="story"><div class="meta">'
                     '<span class="tag">' + ('JP' if market == '日本株' else 'US') +
                     (' · 5Y LOW' if low else ' · MOVERS') + '</span>'
@@ -365,8 +411,11 @@ def market_digest(report, day, translator, *, base=''):
                     '<p class="stock-price">' + esc(card['price']) + '</p>'
                     + (range_diagram(card['price_range']) if low else '') +
                     '<p>' + bilingual(card['business'], business_en) + '</p>'
-                    '<p class="why"><strong>' + bilingual('注目理由：', 'Why it matters: ') +
-                    '</strong>' + bilingual(card['reason'], reason_en) + '</p>'
+                    '<p class="stock-brands"><strong>' + bilingual('代表的な商品・サービス：', 'Known products and services: ') +
+                    '</strong>' + bilingual(brands, brands_en) + '</p>'
+                    '<p class="why"><strong>' + bilingual('安値の理由：' if low else '注目理由：',
+                                                            'Why the price is low: ' if low else 'Why watch: ') +
+                    '</strong>' + bilingual(reason, reason_en) + '</p>' + selection_html + context_html + news_html +
                     '<a class="link" href="' + base + 'reports/' + esc(day) + '.html#' + card['anchor'] + '">' +
                     bilingual('詳しい分析を見る ↗', 'Full analysis ↗') + '</a></article>')
         out += '</section>'

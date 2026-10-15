@@ -153,6 +153,35 @@ class SiteTests(unittest.TestCase):
         self.assertIn('3,200.0円', page)
         self.assertIn('自動車製造', page)
 
+    def test_summary_products_reasons_and_evidence(self):
+        source = ('## 日本株｜注目候補\n\n### 企業A｜AAA\n'
+                  '**主要ブランド・サービス（登録情報）：** 商品A、サービスB\n'
+                  '**事実・注目理由：** 前日比+3.0%。\n'
+                  '**注目理由：** 決算発表で売上増加を公表。\n'
+                  '**関連報道の見出し（直接の株価変動要因とは限りません）：**\n'
+                  '- [決算発表](https://example.com/results)（2026-10-15）\n\n'
+                  '## 日本株｜安値圏候補\n\n### 企業B｜BBB\n'
+                  '**主要ブランド・サービス（登録情報）：** 商品C\n'
+                  '**主要リスク（登録情報）：** 原材料費\n'
+                  '**事実・注目理由：** 5年レンジ10.0%。\n')
+        soup = BeautifulSoup(site.market_digest(source, '2026-10-15',
+                             site.Translator(cache={}, limit=0)), 'html.parser')
+        mover, low = soup.select('article')
+        self.assertIn('商品A、サービスB', mover.select_one('.stock-brands').get_text())
+        self.assertIn('注目理由：', mover.select_one('.why').get_text())
+        self.assertIn('決算発表で売上増加を公表。', mover.select_one('.why').get_text())
+        self.assertEqual(mover.select_one('.stock-news a')['href'], 'https://example.com/results')
+        self.assertIn('2026-10-15', mover.select_one('.stock-news').get_text())
+        self.assertIn('安値の理由：', low.select_one('.why').get_text())
+        self.assertIn('直接要因は確認できていません', low.select_one('.why').get_text())
+        self.assertNotIn('原材料費', low.select_one('.why').get_text())
+        self.assertIn('原材料費', low.select_one('.stock-context').get_text())
+        self.assertIn('10.0%', low.select_one('.stock-selection').get_text())
+        explicit = source.replace('**主要リスク（登録情報）：** 原材料費',
+                                  '**安値の理由：** 業績予想を下方修正。')
+        self.assertIn('業績予想を下方修正。', site.market_digest(
+            explicit, '2026-10-15', site.Translator(cache={}, limit=0)))
+
     def test_numeric_mismatch_rejected(self):
         class BadTranslator:
             def translate(self, value):
